@@ -130,13 +130,17 @@ body {
   color: var(--mtr-error);
   text-decoration: wavy underline;
 }
+/* 位置と高さはスクリプト(popupScript.ts)が画面に収まるように置き直す。ここはスクリプトがないときの位置 */
 .mtr-ref-popup {
   display: none;
   position: absolute;
   left: 0;
-  top: 1.6em;
-  z-index: 10;
-  width: min(40rem, 90vw);
+  top: 100%;
+  z-index: 30;
+  width: min(40rem, calc(100vw - 16px));
+  max-height: 70vh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
   background: var(--mtr-background);
   box-shadow: var(--mtr-popup-shadow);
   border-radius: 6px;
@@ -1486,6 +1490,50 @@ body {
 </section>
 </article>
 <nav class="mtr-site-pager"><a rel="prev" href="%231.html">#1</a><a rel="next" href="%232-1.html">#2-1</a></nav>
+<script>
+(() => {
+  const MARGIN = 8;
+  let current;
+
+  /** node を含む、ポップアップを持つ参照 */
+  const owner = (node) => {
+    for (let ref = node instanceof Element ? node.closest(".mtr-ref") : null; ref; ref = ref.parentElement?.closest(".mtr-ref")) {
+      if (ref.querySelector(":scope > .mtr-ref-popup")) return ref;
+    }
+    return undefined;
+  };
+
+  const place = (ref) => {
+    const popup = ref.querySelector(":scope > .mtr-ref-popup");
+    const lines = ref.querySelector(":scope > a")?.getClientRects() ?? [];
+    if (lines.length === 0) return;
+    const first = lines[0];
+    const last = lines[lines.length - 1];
+    const style = popup.style;
+    style.position = "fixed";
+    style.maxHeight = "none";
+    const height = popup.offsetHeight;
+    const below = innerHeight - last.bottom - MARGIN;
+    const above = first.top - MARGIN;
+    const down = height <= below || below >= above;
+    const anchor = down ? last : first;
+    style.top = down ? last.bottom + "px" : "auto";
+    style.bottom = down ? "auto" : innerHeight - first.top + "px";
+    style.maxHeight = Math.max(down ? below : above, 0) + "px";
+    style.left = Math.max(MARGIN, Math.min(anchor.left, innerWidth - MARGIN - popup.offsetWidth)) + "px";
+  };
+
+  document.addEventListener("mouseover", (event) => {
+    const ref = owner(event.target);
+    if (ref === undefined || ref.contains(event.relatedTarget)) return;
+    current = ref;
+    place(ref);
+  });
+  const follow = () => current?.matches(":hover") && place(current);
+  addEventListener("scroll", follow, { passive: true });
+  addEventListener("resize", follow);
+})();
+</script>
 
 </body>
 </html>
