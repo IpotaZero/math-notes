@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>lattice/没・Galois接続と透視関係</title>
+<link rel="stylesheet" href="../katex/katex.min.css">
+<style>
+:root {
+  --mtr-indent: 2em;
+  --mtr-guide-offset: 0.2em;
+  --mtr-math-gap: 0.25em;
+  --mtr-font: "Hiragino Sans", "Yu Gothic UI", "Meiryo", sans-serif;
+  --mtr-text: #1f2328;
+  --mtr-muted: #6e7781;
+  --mtr-background: #ffffff;
+  --mtr-guide: #d8dee4;
+  --mtr-accent: #0969da;
+  --mtr-error: #cf222e;
+  --mtr-env-border: #d0d7de;
+  --mtr-env-background: #f6f8fa;
+  --mtr-popup-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --mtr-text: #e6edf3;
+    --mtr-muted: #8d96a0;
+    --mtr-background: #0d1117;
+    --mtr-guide: #30363d;
+    --mtr-accent: #4493f8;
+    --mtr-error: #f85149;
+    --mtr-env-border: #30363d;
+    --mtr-env-background: #161b22;
+    --mtr-popup-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--mtr-background);
+  color: var(--mtr-text);
+  font-family: var(--mtr-font);
+  line-height: 1.8;
+}
+
+.mtr-document {
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 6rem;
+}
+
+.mtr-title {
+  font-size: 1.6rem;
+  margin: 0 0 1.5rem;
+}
+
+/* 1 段深いまとまり。左の枠線がインデントガイドで、親の行の行頭から下に伸びる */
+.mtr-indent {
+  margin-left: var(--mtr-guide-offset);
+  padding-left: calc(var(--mtr-indent) - var(--mtr-guide-offset) - 1px);
+  border-left: 1px solid var(--mtr-guide);
+}
+
+.mtr-line {
+  overflow-wrap: anywhere;
+}
+
+/* 数式の前後のアキ(隣がどんな文字でも入る) */
+.mtr-math.mtr-gap-before { margin-left: var(--mtr-math-gap); }
+.mtr-math.mtr-gap-after { margin-right: var(--mtr-math-gap); }
+
+.mtr-blank {
+  height: 0.9em;
+}
+
+/* 環境 */
+.mtr-env {
+  margin: 1.2em 0;
+  padding: 0.6em 1em 0.8em;
+  border: 1px solid var(--mtr-env-border);
+  border-radius: 6px;
+  background: var(--mtr-env-background);
+}
+.mtr-env-head {
+  font-weight: bold;
+  margin-bottom: 0.3em;
+}
+.mtr-env-number {
+  margin-left: 0.3em;
+}
+.mtr-env-title::before { content: "("; margin-left: 0.3em; }
+.mtr-env-title::after { content: ")"; }
+.mtr-env-id {
+  margin-left: 0.8em;
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 0.8em;
+  font-weight: normal;
+  color: var(--mtr-muted);
+}
+
+.mtr-prf {
+  background: transparent;
+  border-style: dashed;
+}
+.mtr-prf > .mtr-env-body::after {
+  content: "\220E";
+  display: block;
+  text-align: right;
+}
+
+/* 参照 */
+.mtr-ref {
+  position: relative;
+}
+.mtr-ref a {
+  color: var(--mtr-accent);
+  text-decoration: none;
+}
+.mtr-ref a:hover {
+  text-decoration: underline;
+}
+.mtr-ref-file {
+  margin-left: 0.3em;
+  font-size: 0.8em;
+  color: var(--mtr-muted);
+}
+.mtr-ref-file::before { content: "["; }
+.mtr-ref-file::after { content: "]"; }
+.mtr-ref-unresolved {
+  color: var(--mtr-error);
+  text-decoration: wavy underline;
+}
+.mtr-ref-popup {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 1.6em;
+  z-index: 10;
+  width: min(40rem, 90vw);
+  background: var(--mtr-background);
+  box-shadow: var(--mtr-popup-shadow);
+  border-radius: 6px;
+}
+.mtr-ref-popup > .mtr-env {
+  margin: 0;
+}
+.mtr-ref:hover > .mtr-ref-popup {
+  display: block;
+}
+
+.mtr-math-error {
+  color: var(--mtr-error);
+  font-family: ui-monospace, Consolas, monospace;
+  text-decoration: wavy underline;
+}
+</style>
+<style id="mtr-user-style">/* この文書だけの見た目の調整。既定のスタイルの後に読み込まれるので上書きできる。
+   クラス名の一覧は README を参照。 */
+
+:root {
+    --mtr-indent: 3em;
+    font-size: 11pt;
+}
+
+.mtr-document {
+    overflow-x: hidden;
+}
+
+.mtr-line {
+    height: calc-size(fit-content, size * 1.2);
+}
+
+.mtr-env {
+    margin: 0;
+}
+
+.mtr-h1 {
+    .mtr-env-head {
+        display: none;
+    }
+
+    font-size: 1.5em;
+
+    padding: 0;
+    background-color: transparent;
+    border: none;
+
+    .mtr-line::before {
+        content: "# ";
+    }
+}
+
+.mtr-h2 {
+    .mtr-env-head {
+        display: none;
+    }
+
+    font-size: 1.25em;
+
+    padding: 0;
+    background-color: transparent;
+    border: none;
+
+    .mtr-line::before {
+        content: "## ";
+    }
+}
+
+/* 定理・補題は左に色の帯を付ける */
+.mtr-thm,
+.mtr-lem {
+    border-left: 4px solid var(--mtr-accent);
+}
+
+/* 参照先の id(@existence など)をプレビューで隠したいとき
+.mtr-env-id { display: none; }
+*/
+
+.mpunct {
+    margin-right: 0.25em;
+}
+/* 
+.mtr-preview-bar {
+    display: none;
+} */
+
+.mtr-ref-file {
+    display: none;
+}
+</style>
+<style>
+.mtr-env-id { display: none; }
+.mtr-site-trail, .mtr-site-pager {
+  display: flex; flex-wrap: wrap; gap: 0.5rem 1rem;
+  max-width: 52rem; margin: 0 auto; padding: 0.8rem 1rem 0;
+  font-size: 0.85rem; color: var(--mtr-muted);
+}
+.mtr-site-trail { gap: 0.5rem; }
+.mtr-site-trail > * + *::before { content: "/"; margin-right: 0.5rem; color: var(--mtr-muted); }
+.mtr-site-trail ~ .mtr-document { padding-bottom: 2rem; }
+.mtr-site-pager { padding-bottom: 4rem; border-top: 1px solid var(--mtr-env-border); padding-top: 1rem; }
+.mtr-site-pager [rel="prev"]::before { content: "← "; }
+.mtr-site-pager [rel="next"] { margin-left: auto; }
+.mtr-site-pager [rel="next"]::after { content: " →"; }
+.mtr-site-trail a, .mtr-site-pager a, .mtr-site-folder a { color: var(--mtr-accent); text-decoration: none; }
+.mtr-site-trail a:hover, .mtr-site-pager a:hover, .mtr-site-folder a:hover { text-decoration: underline; }
+.mtr-site-folder h2 { font-size: 1.1rem; margin: 1.5rem 0 0.3rem; }
+.mtr-site-folder ul { margin: 0; padding-left: 1.2em; }
+</style>
+</head>
+<body>
+<nav class="mtr-site-trail"><a href="../index.html">数学ノート</a><span>lattice</span><span>没・Galois接続と透視関係</span></nav>
+<article class="mtr-document">
+
+<div class="mtr-line" data-depth="0" data-source-line="5">(没: 現行版は「有限長モジュラー束と透視関係」の<span class="mtr-ref"><a href="%E6%9C%89%E9%99%90%E9%95%B7%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%A9%E3%83%BC%E6%9D%9F%E3%81%A8%E9%80%8F%E8%A6%96%E9%96%A2%E4%BF%82.html#perspective">透視関係 (perspective relation)<span class="mtr-ref-file">lattice/有限長モジュラー束と透視関係</span></a><span class="mtr-ref-popup"><section class="mtr-env mtr-def" data-source-line="77">
+<div class="mtr-env-head"><span class="mtr-env-name">定義</span><span class="mtr-env-number">5</span><span class="mtr-env-title">透視関係 (perspective relation)</span></div>
+<div class="mtr-env-body">
+<div class="mtr-line" data-depth="0" data-source-line="78">モジュラー束<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal">L</span></span></span></span></span>に対し、<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo>×</mo><mi>L</mi></mrow><annotation encoding="application/x-tex">L \times L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">L</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal">L</span></span></span></span></span>上の二項関係を以下で定める。</div>
+<div class="mtr-line" data-depth="0" data-source-line="79"><span class="mtr-math mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>a</mi><mo separator="true">,</mo><mi>b</mi><mo stretchy="false">)</mo><mo>∼</mo><mo stretchy="false">(</mo><mi>c</mi><mo separator="true">,</mo><mi>d</mi><mo stretchy="false">)</mo><mo>:</mo><mo>⇔</mo><mi>b</mi><mo>∨</mo><mi>c</mi><mo>=</mo><mi>d</mi></mrow><annotation encoding="application/x-tex">(a, b) \sim (c, d) : ⇔ b \vee c = d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">b</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∼</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">c</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">d</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:⇔</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∨</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">d</span></span></span></span></span>かつ<span class="mtr-math mtr-gap-before"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>∧</mo><mi>c</mi><mo>=</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">b \wedge c = a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∧</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span></span></div>
+<div class="mtr-blank"></div>
+<div class="mtr-line" data-depth="0" data-source-line="81"><span class="mtr-math mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∼</mo></mrow><annotation encoding="application/x-tex">\sim</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.3669em;"></span><span class="mrel">∼</span></span></span></span></span>は反射律は満たすが、対象律と推移律を満たさない。</div>
+<div class="mtr-line" data-depth="0" data-source-line="82">そこで、<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∼</mo></mrow><annotation encoding="application/x-tex">\sim</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.3669em;"></span><span class="mrel">∼</span></span></span></span></span>を含む最小の同値関係を<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mo>∼</mo><mo>∗</mo></msup></mrow><annotation encoding="application/x-tex">\sim^*</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6887em;"></span><span class="mrel"><span class="mrel">∼</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6887em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span></span></span></span></span>とする。</div>
+<div class="mtr-blank"></div>
+<div class="mtr-line" data-depth="0" data-source-line="84"><span class="mtr-math mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mo>∼</mo><mo>∗</mo></msup></mrow><annotation encoding="application/x-tex">\sim^*</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6887em;"></span><span class="mrel"><span class="mrel">∼</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6887em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span></span></span></span></span>を透視関係と呼ぶ。</div>
+</div>
+</section></span></span>である)</div>
+<div class="mtr-blank"></div>
+<section class="mtr-env mtr-def" data-source-line="7">
+<div class="mtr-env-head"><span class="mtr-env-name">定義</span><span class="mtr-env-number">1</span></div>
+<div class="mtr-env-body">
+<div class="mtr-line" data-depth="0" data-source-line="8"><span class="mtr-math mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Λ</mi></mrow><annotation encoding="application/x-tex">\Lambda</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord">Λ</span></span></span></span></span>: モジュラー束</div>
+<div class="mtr-blank"></div>
+<div class="mtr-line" data-depth="0" data-source-line="10"><span class="mtr-math mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi mathvariant="normal">Λ</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">\Lambda^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">Λ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span>上の二項関係を以下で定める。</div>
+<div class="mtr-line" data-depth="0" data-source-line="11">* <span class="mtr-math mtr-gap-before"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>a</mi><mo separator="true">,</mo><mi>b</mi><mo stretchy="false">)</mo><mo>↗</mo><mo stretchy="false">(</mo><mi>c</mi><mo separator="true">,</mo><mi>d</mi><mo stretchy="false">)</mo><mo>:</mo><mtext>  </mtext><mo>⟺</mo><mtext>  </mtext><mi>b</mi><mo>∧</mo><mi>c</mi><mo>=</mo><mi>a</mi><mtext>かつ</mtext><mi>b</mi><mo>∨</mo><mi>c</mi><mo>=</mo><mi>d</mi></mrow><annotation encoding="application/x-tex">(a, b) \nearrow (c, d) : \iff b \wedge c = a \text{かつ} b \vee c = d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">b</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">↗</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">c</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">d</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.549em;vertical-align:-0.024em;"></span><span class="mrel">⟺</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∧</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">a</span><span class="mord text"><span class="mord cjk_fallback">かつ</span></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∨</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal">d</span></span></span></span></span></div>
+<div class="mtr-blank"></div>
+<div class="mtr-line" data-depth="0" data-source-line="13">この<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>↗</mo></mrow><annotation encoding="application/x-tex">\nearrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mrel">↗</span></span></span></span></span>を透視関係と呼ぶ。</div>
+<div class="mtr-blank"></div>
+<div class="mtr-line" data-depth="0" data-source-line="15">一般には<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>↗</mo></mrow><annotation encoding="application/x-tex">\nearrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mrel">↗</span></span></span></span></span>は対称的でも推移的でもない。</div>
+<div class="mtr-blank"></div>
+<div class="mtr-line" data-depth="0" data-source-line="17"><span class="mtr-math mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>↗</mo></mrow><annotation encoding="application/x-tex">\nearrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mrel">↗</span></span></span></span></span>の対称閉包を<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∼</mo></mrow><annotation encoding="application/x-tex">\sim</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.3669em;"></span><span class="mrel">∼</span></span></span></span></span>、<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∼</mo></mrow><annotation encoding="application/x-tex">\sim</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.3669em;"></span><span class="mrel">∼</span></span></span></span></span>の推移閉包を<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≈</mo></mrow><annotation encoding="application/x-tex">\approx</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4831em;"></span><span class="mrel">≈</span></span></span></span></span>と定め、<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>≈</mo></mrow><annotation encoding="application/x-tex">\approx</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4831em;"></span><span class="mrel">≈</span></span></span></span></span>を透視同型と呼ぶ。</div>
+</div>
+</section>
+<div class="mtr-blank"></div>
+<section class="mtr-env mtr-prop" data-source-line="20">
+<div class="mtr-env-head"><span class="mtr-env-name">命題</span><span class="mtr-env-number">2</span></div>
+<div class="mtr-env-body">
+<div class="mtr-line" data-depth="0" data-source-line="21">以下は成り立つか?</div>
+<div class="mtr-blank"></div>
+<div class="mtr-line" data-depth="0" data-source-line="23"><span class="mtr-math mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Λ</mi></mrow><annotation encoding="application/x-tex">\Lambda</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord">Λ</span></span></span></span></span>: モジュラー束</div>
+<div class="mtr-line" data-depth="0" data-source-line="24"><span class="mtr-math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo separator="true">,</mo><mi>b</mi><mo separator="true">,</mo><mi>c</mi><mo separator="true">,</mo><mi>d</mi><mo>∈</mo><mi mathvariant="normal">Λ</mi></mrow><annotation encoding="application/x-tex">a, b, c, d \in \Lambda</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">b</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">c</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">d</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord">Λ</span></span></span></span></span></div>
+<div class="mtr-line" data-depth="0" data-source-line="25"><span class="mtr-math mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi><mo>:</mo><mo stretchy="false">[</mo><mi>a</mi><mo separator="true">,</mo><mi>b</mi><msub><mo stretchy="false">]</mo><mi mathvariant="normal">Λ</mi></msub><mo>→</mo><mo stretchy="false">[</mo><mi>c</mi><mo separator="true">,</mo><mi>d</mi><msub><mo stretchy="false">]</mo><mi mathvariant="normal">Λ</mi></msub></mrow><annotation encoding="application/x-tex">\phi: [a, b]_\Lambda \to [c, d]_\Lambda</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">ϕ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathnormal">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">b</span><span class="mclose"><span class="mclose">]</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">Λ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathnormal">c</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">d</span><span class="mclose"><span class="mclose">]</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">Λ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>: 全単射準同型</div>
+<div class="mtr-blank"></div>
+<div class="mtr-line" data-depth="0" data-source-line="27">このとき、</div>
+<div class="mtr-line" data-depth="0" data-source-line="28">* <span class="mtr-math mtr-gap-before"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>a</mi><mo separator="true">,</mo><mi>b</mi><mo stretchy="false">)</mo><mo>↗</mo><mo stretchy="false">(</mo><mi>c</mi><mo separator="true">,</mo><mi>d</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(a, b) \nearrow (c, d)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">b</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">↗</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">c</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">d</span><span class="mclose">)</span></span></span></span></span></div>
+<div class="mtr-blank"></div>
+<div class="mtr-line" data-depth="0" data-source-line="30">成り立たない。</div>
+</div>
+</section>
+</article>
+<nav class="mtr-site-pager"><a rel="prev" href="%E6%B2%A1%E3%83%BBGalois%E6%8E%A5%E7%B6%9A%E3%81%A7%E8%A6%8B%E3%82%8B%E5%8A%A0%E7%BE%A4%E8%AB%96.html">没・Galois接続で見る加群論</a><a rel="next" href="%E6%B2%A1%E3%83%BBKurosh-Ore%E3%81%AE%E5%AE%9A%E7%90%86%E3%81%A8Krull-Schmidt%E3%81%AE%E5%AE%9A%E7%90%86.html">没・Kurosh-Oreの定理とKrull-Schmidtの定理</a></nav>
+
+</body>
+</html>

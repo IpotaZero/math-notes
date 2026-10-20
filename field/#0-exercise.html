@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>field/#0-exercise</title>
+<link rel="stylesheet" href="../katex/katex.min.css">
+<style>
+:root {
+  --mtr-indent: 2em;
+  --mtr-guide-offset: 0.2em;
+  --mtr-math-gap: 0.25em;
+  --mtr-font: "Hiragino Sans", "Yu Gothic UI", "Meiryo", sans-serif;
+  --mtr-text: #1f2328;
+  --mtr-muted: #6e7781;
+  --mtr-background: #ffffff;
+  --mtr-guide: #d8dee4;
+  --mtr-accent: #0969da;
+  --mtr-error: #cf222e;
+  --mtr-env-border: #d0d7de;
+  --mtr-env-background: #f6f8fa;
+  --mtr-popup-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --mtr-text: #e6edf3;
+    --mtr-muted: #8d96a0;
+    --mtr-background: #0d1117;
+    --mtr-guide: #30363d;
+    --mtr-accent: #4493f8;
+    --mtr-error: #f85149;
+    --mtr-env-border: #30363d;
+    --mtr-env-background: #161b22;
+    --mtr-popup-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--mtr-background);
+  color: var(--mtr-text);
+  font-family: var(--mtr-font);
+  line-height: 1.8;
+}
+
+.mtr-document {
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 6rem;
+}
+
+.mtr-title {
+  font-size: 1.6rem;
+  margin: 0 0 1.5rem;
+}
+
+/* 1 段深いまとまり。左の枠線がインデントガイドで、親の行の行頭から下に伸びる */
+.mtr-indent {
+  margin-left: var(--mtr-guide-offset);
+  padding-left: calc(var(--mtr-indent) - var(--mtr-guide-offset) - 1px);
+  border-left: 1px solid var(--mtr-guide);
+}
+
+.mtr-line {
+  overflow-wrap: anywhere;
+}
+
+/* 数式の前後のアキ(隣がどんな文字でも入る) */
+.mtr-math.mtr-gap-before { margin-left: var(--mtr-math-gap); }
+.mtr-math.mtr-gap-after { margin-right: var(--mtr-math-gap); }
+
+.mtr-blank {
+  height: 0.9em;
+}
+
+/* 環境 */
+.mtr-env {
+  margin: 1.2em 0;
+  padding: 0.6em 1em 0.8em;
+  border: 1px solid var(--mtr-env-border);
+  border-radius: 6px;
+  background: var(--mtr-env-background);
+}
+.mtr-env-head {
+  font-weight: bold;
+  margin-bottom: 0.3em;
+}
+.mtr-env-number {
+  margin-left: 0.3em;
+}
+.mtr-env-title::before { content: "("; margin-left: 0.3em; }
+.mtr-env-title::after { content: ")"; }
+.mtr-env-id {
+  margin-left: 0.8em;
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 0.8em;
+  font-weight: normal;
+  color: var(--mtr-muted);
+}
+
+.mtr-prf {
+  background: transparent;
+  border-style: dashed;
+}
+.mtr-prf > .mtr-env-body::after {
+  content: "\220E";
+  display: block;
+  text-align: right;
+}
+
+/* 参照 */
+.mtr-ref {
+  position: relative;
+}
+.mtr-ref a {
+  color: var(--mtr-accent);
+  text-decoration: none;
+}
+.mtr-ref a:hover {
+  text-decoration: underline;
+}
+.mtr-ref-file {
+  margin-left: 0.3em;
+  font-size: 0.8em;
+  color: var(--mtr-muted);
+}
+.mtr-ref-file::before { content: "["; }
+.mtr-ref-file::after { content: "]"; }
+.mtr-ref-unresolved {
+  color: var(--mtr-error);
+  text-decoration: wavy underline;
+}
+.mtr-ref-popup {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 1.6em;
+  z-index: 10;
+  width: min(40rem, 90vw);
+  background: var(--mtr-background);
+  box-shadow: var(--mtr-popup-shadow);
+  border-radius: 6px;
+}
+.mtr-ref-popup > .mtr-env {
+  margin: 0;
+}
+.mtr-ref:hover > .mtr-ref-popup {
+  display: block;
+}
+
+.mtr-math-error {
+  color: var(--mtr-error);
+  font-family: ui-monospace, Consolas, monospace;
+  text-decoration: wavy underline;
+}
+</style>
+<style id="mtr-user-style"></style>
+<style>
+.mtr-env-id { display: none; }
+.mtr-site-trail, .mtr-site-pager {
+  display: flex; flex-wrap: wrap; gap: 0.5rem 1rem;
+  max-width: 52rem; margin: 0 auto; padding: 0.8rem 1rem 0;
+  font-size: 0.85rem; color: var(--mtr-muted);
+}
+.mtr-site-trail { gap: 0.5rem; }
+.mtr-site-trail > * + *::before { content: "/"; margin-right: 0.5rem; color: var(--mtr-muted); }
+.mtr-site-trail ~ .mtr-document { padding-bottom: 2rem; }
+.mtr-site-pager { padding-bottom: 4rem; border-top: 1px solid var(--mtr-env-border); padding-top: 1rem; }
+.mtr-site-pager [rel="prev"]::before { content: "← "; }
+.mtr-site-pager [rel="next"] { margin-left: auto; }
+.mtr-site-pager [rel="next"]::after { content: " →"; }
+.mtr-site-trail a, .mtr-site-pager a, .mtr-site-folder a { color: var(--mtr-accent); text-decoration: none; }
+.mtr-site-trail a:hover, .mtr-site-pager a:hover, .mtr-site-folder a:hover { text-decoration: underline; }
+.mtr-site-folder h2 { font-size: 1.1rem; margin: 1.5rem 0 0.3rem; }
+.mtr-site-folder ul { margin: 0; padding-left: 1.2em; }
+</style>
+</head>
+<body>
+<nav class="mtr-site-trail"><a href="../index.html">数学ノート</a><span>field</span><span>#0-exercise</span></nav>
+<article class="mtr-document">
+
+<section class="mtr-env mtr-exercise" data-source-line="4">
+<div class="mtr-env-head"><span class="mtr-env-name">exercise</span></div>
+<div class="mtr-env-body">
+<div class="mtr-line" data-depth="0" data-source-line="5"><span class="mtr-math mtr-gap-after"><span class="mtr-math-error" title="KaTeX parse error: Undefined control sequence: \Q at position 3: m^\̲Q̲_{\sqrt{2}}">m^\Q_{\sqrt{2}}</span></span>を求め、<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="mtr-math-error" title="KaTeX parse error: Undefined control sequence: \Q at position 2: [\̲Q̲(\sqrt{2}) : \Q…">[\Q(\sqrt{2}) : \Q] = 2</span></span>を示せ。</div>
+</div>
+</section>
+<div class="mtr-blank"></div>
+<section class="mtr-env mtr-answer" data-source-line="8">
+<div class="mtr-env-head"><span class="mtr-env-name">answer</span></div>
+<div class="mtr-env-body">
+<div class="mtr-line" data-depth="0" data-source-line="9"><span class="mtr-math mtr-gap-after"><span class="mtr-math-error" title="KaTeX parse error: Undefined control sequence: \Q at position 20: … = x^2 - 2 \in \̲Q̲[x]">f(x) = x^2 - 2 \in \Q[x]</span></span>と置く。</div>
+<div class="mtr-blank"></div>
+<div class="mtr-line" data-depth="0" data-source-line="11">[示すこと: <span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span></span></span></span></span>は<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="mtr-math-error" title="KaTeX parse error: Undefined control sequence: \Q at position 1: \̲Q̲">\Q</span></span>上の<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msqrt><mn>2</mn></msqrt></mrow><annotation encoding="application/x-tex">\sqrt{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1.04em;vertical-align:-0.1328em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9072em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord">2</span></span></span><span style="top:-2.8672em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="1.08em" viewBox="0 0 400000 1080" preserveAspectRatio="xMinYMin slice"><path d="M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1328em;"><span></span></span></span></span></span></span></span></span></span>の最小多項式]</div>
+<div class="mtr-indent" data-depth="1">
+<div class="mtr-line" data-depth="1" data-source-line="12">[示すこと: <span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><msqrt><mn>2</mn></msqrt><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">f(\sqrt{2}) = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1.1572em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="mopen">(</span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9072em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord">2</span></span></span><span style="top:-2.8672em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="1.08em" viewBox="0 0 400000 1080" preserveAspectRatio="xMinYMin slice"><path d="M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1328em;"><span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span>]</div>
+<div class="mtr-indent" data-depth="2">
+<div class="mtr-line" data-depth="2" data-source-line="13">明らか。</div>
+</div>
+<div class="mtr-blank"></div>
+<div class="mtr-line" data-depth="1" data-source-line="15">[示すこと: <span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span></span></span></span></span>はモニック]</div>
+<div class="mtr-indent" data-depth="2">
+<div class="mtr-line" data-depth="2" data-source-line="16">明らか。</div>
+</div>
+<div class="mtr-blank"></div>
+<div class="mtr-line" data-depth="1" data-source-line="18">[示すこと: <span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span></span></span></span></span>は既約]</div>
+<div class="mtr-indent" data-depth="2">
+<div class="mtr-line" data-depth="2" data-source-line="19"><span class="mtr-math mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span></span></span></span></span>の最高次以外の係数は素数<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span></span>で割り切れる。</div>
+<div class="mtr-line" data-depth="2" data-source-line="20">また、<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span></span></span></span></span>の最高次以外の係数は<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">2^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span>で割り切れない。</div>
+<div class="mtr-line" data-depth="2" data-source-line="21">よって、Eisensteinの判定法より、<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span></span></span></span></span>は<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="double-struck">Z</mi><mo stretchy="false">[</mo><mi>x</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\Z[x]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathbb">Z</span><span class="mopen">[</span><span class="mord mathnormal">x</span><span class="mclose">]</span></span></span></span></span>上既約である。</div>
+<div class="mtr-line" data-depth="2" data-source-line="22">したがって、<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span></span></span></span></span>は<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="mtr-math-error" title="KaTeX parse error: Undefined control sequence: \Q at position 1: \̲Q̲">\Q</span></span>上既約である。</div>
+</div>
+</div>
+</div>
+</section>
+</article>
+<nav class="mtr-site-pager"><a rel="prev" href="%230.html">#0</a><a rel="next" href="%231.html">#1</a></nav>
+
+</body>
+</html>
