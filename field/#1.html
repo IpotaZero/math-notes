@@ -69,6 +69,14 @@ body {
 .mtr-math.mtr-gap-before { margin-left: var(--mtr-math-gap); }
 .mtr-math.mtr-gap-after { margin-right: var(--mtr-math-gap); }
 
+/* xymatrix の図式(SVG)。Mathlog の \TextCenter に合わせて中央に置く */
+.mtr-diagram {
+  display: block;
+  text-align: center;
+  margin: 0.4em 0;
+}
+.mtr-diagram svg { max-width: 100%; height: auto; }
+
 .mtr-blank {
   height: 0.9em;
 }

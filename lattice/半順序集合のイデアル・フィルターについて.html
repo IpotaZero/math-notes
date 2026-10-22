@@ -69,6 +69,14 @@ body {
 .mtr-math.mtr-gap-before { margin-left: var(--mtr-math-gap); }
 .mtr-math.mtr-gap-after { margin-right: var(--mtr-math-gap); }
 
+/* xymatrix の図式(SVG)。Mathlog の \TextCenter に合わせて中央に置く */
+.mtr-diagram {
+  display: block;
+  text-align: center;
+  margin: 0.4em 0;
+}
+.mtr-diagram svg { max-width: 100%; height: auto; }
+
 .mtr-blank {
   height: 0.9em;
 }
@@ -839,7 +847,7 @@ body {
 </div>
 </section>
 </article>
-<nav class="mtr-site-pager"><a rel="prev" href="%E4%BB%A3%E6%95%B0%E7%9A%84%E6%9D%9F%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6.html">代数的束について</a><a rel="next" href="%E6%B2%A1%E3%83%BBFitting%E3%81%AE%E8%A3%9C%E9%A1%8C%E3%81%A8Galois%E6%8E%A5%E7%B6%9A.html">没・Fittingの補題とGalois接続</a></nav>
+<nav class="mtr-site-pager"><a rel="prev" href="%E4%BB%A3%E6%95%B0%E7%9A%84%E6%9D%9F%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6.html">代数的束について</a><a rel="next" href="%E6%B2%A1%E3%83%BBKurosh-Ore%E3%81%AE%E5%AE%9A%E7%90%86%E3%81%A8Krull-Schmidt%E3%81%AE%E5%AE%9A%E7%90%86.html">没・Kurosh-Oreの定理とKrull-Schmidtの定理</a></nav>
 <script>
 (() => {
   const MARGIN = 8;
