@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>category/#0</title>
+<link rel="stylesheet" href="../katex/katex.min.css">
+<style>
+:root {
+  --mtr-indent: 2em;
+  --mtr-guide-offset: 0.2em;
+  --mtr-math-gap: 0.25em;
+  --mtr-font: "Hiragino Sans", "Yu Gothic UI", "Meiryo", sans-serif;
+  --mtr-text: #1f2328;
+  --mtr-muted: #6e7781;
+  --mtr-background: #ffffff;
+  --mtr-guide: #d8dee4;
+  --mtr-accent: #0969da;
+  --mtr-error: #cf222e;
+  --mtr-env-border: #d0d7de;
+  --mtr-env-background: #f6f8fa;
+  --mtr-popup-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --mtr-text: #e6edf3;
+    --mtr-muted: #8d96a0;
+    --mtr-background: #0d1117;
+    --mtr-guide: #30363d;
+    --mtr-accent: #4493f8;
+    --mtr-error: #f85149;
+    --mtr-env-border: #30363d;
+    --mtr-env-background: #161b22;
+    --mtr-popup-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--mtr-background);
+  color: var(--mtr-text);
+  font-family: var(--mtr-font);
+  line-height: 1.8;
+}
+
+.mtr-document {
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 6rem;
+}
+
+.mtr-title {
+  font-size: 1.6rem;
+  margin: 0 0 1.5rem;
+}
+
+/* 1 段深いまとまり。左の枠線がインデントガイドで、親の行の行頭から下に伸びる */
+.mtr-indent {
+  margin-left: var(--mtr-guide-offset);
+  padding-left: calc(var(--mtr-indent) - var(--mtr-guide-offset) - 1px);
+  border-left: 1px solid var(--mtr-guide);
+}
+
+.mtr-line {
+  overflow-wrap: anywhere;
+}
+
+/* 数式の前後のアキ(隣がどんな文字でも入る) */
+.mtr-math.mtr-gap-before { margin-left: var(--mtr-math-gap); }
+.mtr-math.mtr-gap-after { margin-right: var(--mtr-math-gap); }
+
+/* xymatrix の図式(SVG)。Mathlog の \TextCenter に合わせて中央に置く */
+.mtr-diagram {
+  display: block;
+  text-align: center;
+  margin: 0.4em 0;
+}
+.mtr-diagram svg { max-width: 100%; height: auto; }
+
+.mtr-blank {
+  height: 0.9em;
+}
+
+/* 環境 */
+.mtr-env {
+  margin: 1.2em 0;
+  padding: 0.6em 1em 0.8em;
+  border: 1px solid var(--mtr-env-border);
+  border-radius: 6px;
+  background: var(--mtr-env-background);
+}
+.mtr-env-head {
+  font-weight: bold;
+  margin-bottom: 0.3em;
+}
+.mtr-env-number {
+  margin-left: 0.3em;
+}
+.mtr-env-title::before { content: "("; margin-left: 0.3em; }
+.mtr-env-title::after { content: ")"; }
+.mtr-env-id {
+  margin-left: 0.8em;
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 0.8em;
+  font-weight: normal;
+  color: var(--mtr-muted);
+}
+
+.mtr-prf {
+  background: transparent;
+  border-style: dashed;
+}
+.mtr-prf > .mtr-env-body::after {
+  content: "\220E";
+  display: block;
+  text-align: right;
+}
+
+/* 参照 */
+.mtr-ref {
+  position: relative;
+}
+.mtr-ref a {
+  color: var(--mtr-accent);
+  text-decoration: none;
+}
+.mtr-ref a:hover {
+  text-decoration: underline;
+}
+.mtr-ref-file {
+  margin-left: 0.3em;
+  font-size: 0.8em;
+  color: var(--mtr-muted);
+}
+.mtr-ref-file::before { content: "["; }
+.mtr-ref-file::after { content: "]"; }
+.mtr-ref-unresolved {
+  color: var(--mtr-error);
+  text-decoration: wavy underline;
+}
+/* 位置と高さはスクリプト(popupScript.ts)が画面に収まるように置き直す。ここはスクリプトがないときの位置 */
+.mtr-ref-popup {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  z-index: 30;
+  width: min(40rem, calc(100vw - 16px));
+  max-height: 70vh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--mtr-background);
+  box-shadow: var(--mtr-popup-shadow);
+  border-radius: 6px;
+}
+.mtr-ref-popup > .mtr-env {
+  margin: 0;
+}
+.mtr-ref:hover > .mtr-ref-popup {
+  display: block;
+}
+
+.mtr-math-error {
+  color: var(--mtr-error);
+  font-family: ui-monospace, Consolas, monospace;
+  text-decoration: wavy underline;
+}
+</style>
+<style id="mtr-user-style">/* この文書だけの見た目の調整。既定のスタイルの後に読み込まれるので上書きできる。
+   クラス名の一覧は README を参照。 */
+
+:root {
+    --mtr-indent: 3em;
+    font-size: 11pt;
+}
+
+.mtr-document {
+    overflow-x: hidden;
+}
+
+.mtr-line {
+    height: calc-size(fit-content, size * 1.2);
+}
+
+.mtr-env {
+    margin: 0;
+}
+
+.mtr-h1 {
+    .mtr-env-head {
+        display: none;
+    }
+
+    font-size: 1.5em;
+
+    padding: 0;
+    background-color: transparent;
+    border: none;
+
+    .mtr-line::before {
+        content: "# ";
+    }
+}
+
+.mtr-h2 {
+    .mtr-env-head {
+        display: none;
+    }
+
+    font-size: 1.25em;
+
+    padding: 0;
+    background-color: transparent;
+    border: none;
+
+    .mtr-line::before {
+        content: "## ";
+    }
+}
+
+/* 定理・補題は左に色の帯を付ける */
+.mtr-thm,
+.mtr-lem {
+    border-left: 4px solid var(--mtr-accent);
+}
+
+/* 参照先の id(@existence など)をプレビューで隠したいとき
+.mtr-env-id { display: none; }
+*/
+
+.mpunct {
+    margin-right: 0.25em;
+}
+/* 
+.mtr-preview-bar {
+    display: none;
+} */
+
+.mtr-ref-file {
+    display: none;
+}
+</style>
+<style>
+.mtr-env-id { display: none; }
+.mtr-site-trail, .mtr-site-pager {
+  display: flex; flex-wrap: wrap; gap: 0.5rem 1rem;
+  max-width: 52rem; margin: 0 auto; padding: 0.8rem 1rem 0;
+  font-size: 0.85rem; color: var(--mtr-muted);
+}
+.mtr-site-trail { gap: 0.5rem; }
+.mtr-site-trail > * + *::before { content: "/"; margin-right: 0.5rem; color: var(--mtr-muted); }
+.mtr-site-trail ~ .mtr-document { padding-bottom: 2rem; }
+.mtr-site-pager { padding-bottom: 4rem; border-top: 1px solid var(--mtr-env-border); padding-top: 1rem; }
+.mtr-site-pager [rel="prev"]::before { content: "← "; }
+.mtr-site-pager [rel="next"] { margin-left: auto; }
+.mtr-site-pager [rel="next"]::after { content: " →"; }
+.mtr-site-trail a, .mtr-site-pager a, .mtr-site-folder a { color: var(--mtr-accent); text-decoration: none; }
+.mtr-site-trail a:hover, .mtr-site-pager a:hover, .mtr-site-folder a:hover { text-decoration: underline; }
+.mtr-site-folder h2 { font-size: 1.1rem; margin: 1.5rem 0 0.3rem; }
+.mtr-site-folder ul { margin: 0; padding-left: 1.2em; }
+</style>
+</head>
+<body>
+<nav class="mtr-site-trail"><a href="../index.html">数学ノート</a><span>category</span><span>#0</span></nav>
+<article class="mtr-document">
+
+<section class="mtr-env mtr-rem" data-source-line="4">
+<div class="mtr-env-head"><span class="mtr-env-name">注意</span></div>
+<div class="mtr-env-body">
+<div class="mtr-line" data-depth="0" data-source-line="5">圏論の入門用の文書。</div>
+<div class="mtr-line" data-depth="0" data-source-line="6">圏・関手・自然変換を定義し、圏同値の特徴付けまでを扱う。</div>
+<div class="mtr-blank"></div>
+<div class="mtr-line" data-depth="0" data-source-line="8">前提知識</div>
+<div class="mtr-indent" data-depth="1">
+<div class="mtr-line" data-depth="1" data-source-line="9">集合と写像</div>
+<div class="mtr-line" data-depth="1" data-source-line="10">群・環・ベクトル空間の基本(準同型・行列・双対空間・行列式)</div>
+<div class="mtr-line" data-depth="1" data-source-line="11">前順序集合とモノイドの定義</div>
+</div>
+<div class="mtr-blank"></div>
+<div class="mtr-line" data-depth="0" data-source-line="13">構成</div>
+<div class="mtr-indent" data-depth="1">
+<div class="mtr-line" data-depth="1" data-source-line="14">#1 圏</div>
+<div class="mtr-line" data-depth="1" data-source-line="15">#2 射の性質</div>
+<div class="mtr-line" data-depth="1" data-source-line="16">#3 関手</div>
+<div class="mtr-line" data-depth="1" data-source-line="17">#4 自然変換</div>
+<div class="mtr-line" data-depth="1" data-source-line="18">#5 圏同値</div>
+</div>
+</div>
+</section>
+</article>
+<nav class="mtr-site-pager"><a rel="next" href="%231.html">#1</a></nav>
+<script>
+(() => {
+  const MARGIN = 8;
+  let current;
+
+  /** node を含む、ポップアップを持つ参照 */
+  const owner = (node) => {
+    for (let ref = node instanceof Element ? node.closest(".mtr-ref") : null; ref; ref = ref.parentElement?.closest(".mtr-ref")) {
+      if (ref.querySelector(":scope > .mtr-ref-popup")) return ref;
+    }
+    return undefined;
+  };
+
+  const place = (ref) => {
+    const popup = ref.querySelector(":scope > .mtr-ref-popup");
+    const lines = ref.querySelector(":scope > a")?.getClientRects() ?? [];
+    if (lines.length === 0) return;
+    const first = lines[0];
+    const last = lines[lines.length - 1];
+    const style = popup.style;
+    style.position = "fixed";
+    style.maxHeight = "none";
+    const height = popup.offsetHeight;
+    const below = innerHeight - last.bottom - MARGIN;
+    const above = first.top - MARGIN;
+    const down = height <= below || below >= above;
+    const anchor = down ? last : first;
+    style.top = down ? last.bottom + "px" : "auto";
+    style.bottom = down ? "auto" : innerHeight - first.top + "px";
+    style.maxHeight = Math.max(down ? below : above, 0) + "px";
+    style.left = Math.max(MARGIN, Math.min(anchor.left, innerWidth - MARGIN - popup.offsetWidth)) + "px";
+  };
+
+  document.addEventListener("mouseover", (event) => {
+    const ref = owner(event.target);
+    if (ref === undefined || ref.contains(event.relatedTarget)) return;
+    current = ref;
+    place(ref);
+  });
+  const follow = () => current?.matches(":hover") && place(current);
+  addEventListener("scroll", follow, { passive: true });
+  addEventListener("resize", follow);
+})();
+</script>
+
+</body>
+</html>
