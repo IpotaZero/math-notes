@@ -258,27 +258,53 @@ body {
 .mtr-site-trail a:hover, .mtr-site-pager a:hover, .mtr-site-folder a:hover { text-decoration: underline; }
 .mtr-site-folder h2 { font-size: 1.1rem; margin: 1.5rem 0 0.3rem; }
 .mtr-site-folder ul { margin: 0; padding-left: 1.2em; }
+
+.mtr-memo-toggle {
+  float: right; margin-left: 0.5em; padding: 0 0.2em;
+  font: inherit; font-size: 0.8em; font-weight: normal;
+  color: var(--mtr-muted); background: none; border: none; cursor: pointer;
+}
+.mtr-memo-toggle:hover, .mtr-memo-toggle[aria-expanded="true"], .mtr-memo-has { color: var(--mtr-accent); }
+.mtr-memo-count:not(:empty)::before { content: " "; }
+.mtr-memo { margin-top: 0.6em; padding-top: 0.6em; border-top: 1px dashed var(--mtr-env-border); font-size: 0.9em; }
+.mtr-memo-list { list-style: none; margin: 0 0 0.6em; padding: 0; }
+.mtr-memo-list:empty { display: none; }
+.mtr-memo-list li + li { margin-top: 0.5em; }
+.mtr-memo-meta { display: flex; gap: 0.8em; font-size: 0.85em; color: var(--mtr-muted); }
+.mtr-memo-meta button { padding: 0; font: inherit; color: inherit; background: none; border: none; text-decoration: underline; cursor: pointer; }
+.mtr-memo-text { white-space: pre-wrap; overflow-wrap: anywhere; }
+.mtr-memo-form textarea, .mtr-memo-form input {
+  box-sizing: border-box; padding: 0.3em 0.5em;
+  font: inherit; color: inherit; background: var(--mtr-background);
+  border: 1px solid var(--mtr-env-border); border-radius: 4px;
+}
+.mtr-memo-form textarea { display: block; width: 100%; resize: vertical; }
+.mtr-memo-form div { display: flex; flex-wrap: wrap; gap: 0.5em; align-items: center; margin-top: 0.4em; }
+.mtr-memo-form input { width: 10em; min-width: 0; }
+.mtr-memo-form button { font: inherit; cursor: pointer; }
+.mtr-memo-status { font-size: 0.85em; color: var(--mtr-muted); }
+@media print { .mtr-memo, .mtr-memo-toggle { display: none !important; } }
 </style>
 </head>
 <body>
 <nav class="mtr-site-trail"><a href="../index.html">数学ノート</a><span>category</span><span>#3</span></nav>
 <article class="mtr-document">
 
-<section class="mtr-env mtr-h1" data-source-line="6">
+<section class="mtr-env mtr-h1" data-address="+1" data-source-line="6">
 <div class="mtr-env-head"><span class="mtr-env-name">h1</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="7">関手</div>
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-h2" data-source-line="10">
+<section class="mtr-env mtr-h2" data-address="+2" data-source-line="10">
 <div class="mtr-env-head"><span class="mtr-env-name">h2</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="11">定義</div>
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-def" id="functor" data-source-line="14">
+<section class="mtr-env mtr-def" id="functor" data-address="functor" data-source-line="14">
 <div class="mtr-env-head"><span class="mtr-env-name">定義</span><span class="mtr-env-number">1</span><span class="mtr-env-title">関手</span><span class="mtr-env-id">@functor</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="15"><span class="mtr-math mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="script">C</mi><mo separator="true">,</mo><mi mathvariant="script">D</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}, \mathcal{D}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord mathcal" style="margin-right:0.0583em;">C</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathcal" style="margin-right:0.0278em;">D</span></span></span></span></span>: 圏</div>
@@ -300,7 +326,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-def" id="contravariant" data-source-line="29">
+<section class="mtr-env mtr-def" id="contravariant" data-address="contravariant" data-source-line="29">
 <div class="mtr-env-head"><span class="mtr-env-name">定義</span><span class="mtr-env-number">2</span><span class="mtr-env-title">反変関手</span><span class="mtr-env-id">@contravariant</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="30"><span class="mtr-math mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="script">C</mi><mo separator="true">,</mo><mi mathvariant="script">D</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}, \mathcal{D}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord mathcal" style="margin-right:0.0583em;">C</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathcal" style="margin-right:0.0278em;">D</span></span></span></span></span>: 圏</div>
@@ -317,7 +343,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-def" id="op-functor" data-source-line="41">
+<section class="mtr-env mtr-def" id="op-functor" data-address="op-functor" data-source-line="41">
 <div class="mtr-env-head"><span class="mtr-env-name">定義</span><span class="mtr-env-number">3</span><span class="mtr-env-title">関手の反対</span><span class="mtr-env-id">@op-functor</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="42"><span class="mtr-math mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>:</mo><mi mathvariant="script">C</mi><mo>→</mo><mi mathvariant="script">D</mi></mrow><annotation encoding="application/x-tex">F: \mathcal{C} \to \mathcal{D}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathcal" style="margin-right:0.0583em;">C</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathcal" style="margin-right:0.0278em;">D</span></span></span></span></span>: 関手</div>
@@ -327,7 +353,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-prf" data-source-line="48">
+<section class="mtr-env mtr-prf" data-address="op-functor+1" data-source-line="48">
 <div class="mtr-env-head"><span class="mtr-env-name">証明</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="49">[示すこと: <span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>F</mi><mrow><mi mathvariant="normal">o</mi><mi mathvariant="normal">p</mi></mrow></msup></mrow><annotation encoding="application/x-tex">F^{\op}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathrm mtight">op</span></span></span></span></span></span></span></span></span></span></span></span></span></span>は関手である]</div>
@@ -347,7 +373,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-prop" id="functor-preserves" data-source-line="59">
+<section class="mtr-env mtr-prop" id="functor-preserves" data-address="functor-preserves" data-source-line="59">
 <div class="mtr-env-head"><span class="mtr-env-name">命題</span><span class="mtr-env-number">4</span><span class="mtr-env-title">関手が保つもの</span><span class="mtr-env-id">@functor-preserves</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="60"><span class="mtr-math mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>:</mo><mi mathvariant="script">C</mi><mo>→</mo><mi mathvariant="script">D</mi></mrow><annotation encoding="application/x-tex">F: \mathcal{C} \to \mathcal{D}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathcal" style="margin-right:0.0583em;">C</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathcal" style="margin-right:0.0278em;">D</span></span></span></span></span>: 関手</div>
@@ -363,7 +389,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-prf" data-source-line="70">
+<section class="mtr-env mtr-prf" data-address="functor-preserves+1" data-source-line="70">
 <div class="mtr-env-head"><span class="mtr-env-name">証明</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="71">[示すこと: <span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mo>∘</mo><mi>f</mi><mo>=</mo><mi>k</mi><mo>∘</mo><mi>h</mi><mtext>  </mtext><mo>⟹</mo><mtext>  </mtext><mi>F</mi><mo stretchy="false">(</mo><mi>g</mi><mo stretchy="false">)</mo><mo>∘</mo><mi>F</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo>=</mo><mi>F</mi><mo stretchy="false">(</mo><mi>k</mi><mo stretchy="false">)</mo><mo>∘</mo><mi>F</mi><mo stretchy="false">(</mo><mi>h</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">g \circ f = k \circ h \implies F(g) \circ F(f) = F(k) \circ F(h)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6389em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">g</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∘</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∘</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7184em;vertical-align:-0.024em;"></span><span class="mord mathnormal">h</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">⟹</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0359em;">g</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∘</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0315em;">k</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∘</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="mopen">(</span><span class="mord mathnormal">h</span><span class="mclose">)</span></span></span></span></span>]</div>
@@ -395,7 +421,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-def" id="functor-comp" data-source-line="89">
+<section class="mtr-env mtr-def" id="functor-comp" data-address="functor-comp" data-source-line="89">
 <div class="mtr-env-head"><span class="mtr-env-name">定義</span><span class="mtr-env-number">5</span><span class="mtr-env-title">恒等関手と関手の合成</span><span class="mtr-env-id">@functor-comp</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="90"><span class="mtr-math mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="script">C</mi><mo separator="true">,</mo><mi mathvariant="script">D</mi><mo separator="true">,</mo><mi mathvariant="script">E</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}, \mathcal{D}, \mathcal{E}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord mathcal" style="margin-right:0.0583em;">C</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathcal" style="margin-right:0.0278em;">D</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathcal" style="margin-right:0.0894em;">E</span></span></span></span></span>: 圏</div>
@@ -407,7 +433,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-prop" id="functor-comp-basic" data-source-line="98">
+<section class="mtr-env mtr-prop" id="functor-comp-basic" data-address="functor-comp-basic" data-source-line="98">
 <div class="mtr-env-head"><span class="mtr-env-name">命題</span><span class="mtr-env-number">6</span><span class="mtr-env-title">関手の合成の基本</span><span class="mtr-env-id">@functor-comp-basic</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="99"><span class="mtr-math mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>:</mo><mi mathvariant="script">C</mi><mo>→</mo><mi mathvariant="script">D</mi></mrow><annotation encoding="application/x-tex">F: \mathcal{C} \to \mathcal{D}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathcal" style="margin-right:0.0583em;">C</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathcal" style="margin-right:0.0278em;">D</span></span></span></span></span>: 関手</div>
@@ -423,7 +449,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-prf" data-source-line="109">
+<section class="mtr-env mtr-prf" data-address="functor-comp-basic+1" data-source-line="109">
 <div class="mtr-env-head"><span class="mtr-env-name">証明</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="110">[示すこと: <span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi mathvariant="normal">I</mi><mi mathvariant="normal">d</mi></mrow><mi mathvariant="script">C</mi></msub></mrow><annotation encoding="application/x-tex">\Id_{\mathcal{C}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">Id</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathcal mtight" style="margin-right:0.0583em;">C</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>は関手]</div>
@@ -466,7 +492,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-ex" id="cat" data-source-line="137">
+<section class="mtr-env mtr-ex" id="cat" data-address="cat" data-source-line="137">
 <div class="mtr-env-head"><span class="mtr-env-name">例</span><span class="mtr-env-number">7</span><span class="mtr-env-title">小圏の圏</span><span class="mtr-env-id">@cat</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="138">次のように圏<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="bold">C</mi><mi mathvariant="bold">a</mi><mi mathvariant="bold">t</mi></mrow><annotation encoding="application/x-tex">\mathbf{Cat}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6861em;"></span><span class="mord"><span class="mord mathbf">Cat</span></span></span></span></span></span>を定める。</div>
@@ -479,7 +505,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-prf" data-source-line="145">
+<section class="mtr-env mtr-prf" data-address="cat+1" data-source-line="145">
 <div class="mtr-env-head"><span class="mtr-env-name">証明</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="146">[示すこと: <span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="bold">C</mi><mi mathvariant="bold">a</mi><mi mathvariant="bold">t</mi></mrow><annotation encoding="application/x-tex">\mathbf{Cat}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6861em;"></span><span class="mord"><span class="mord mathbf">Cat</span></span></span></span></span></span>は圏である]</div>
@@ -509,21 +535,21 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-rem" data-source-line="154">
+<section class="mtr-env mtr-rem" data-address="cat+2" data-source-line="154">
 <div class="mtr-env-head"><span class="mtr-env-name">注意</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="155">対象を小圏に限るのは、<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Hom</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi mathvariant="script">C</mi><mo separator="true">,</mo><mi mathvariant="script">D</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\hom(\mathcal{C}, \mathcal{D})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span class="mord mathrm">Hom</span></span><span class="mopen">(</span><span class="mord mathcal" style="margin-right:0.0583em;">C</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathcal" style="margin-right:0.0278em;">D</span><span class="mclose">)</span></span></span></span></span>を集合にするためである。</div>
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-h2" data-source-line="158">
+<section class="mtr-env mtr-h2" data-address="cat+3" data-source-line="158">
 <div class="mtr-env-head"><span class="mtr-env-name">h2</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="159">例</div>
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-ex" id="forgetful" data-source-line="162">
+<section class="mtr-env mtr-ex" id="forgetful" data-address="forgetful" data-source-line="162">
 <div class="mtr-env-head"><span class="mtr-env-name">例</span><span class="mtr-env-number">8</span><span class="mtr-env-title">忘却関手</span><span class="mtr-env-id">@forgetful</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="163"><span class="mtr-ref"><a href="%231.html#concrete-examples">集合と構造を保つ写像<span class="mtr-ref-file">category/#1</span></a><span class="mtr-ref-popup"><section class="mtr-env mtr-ex" data-source-line="95">
@@ -556,7 +582,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-prf" data-source-line="169">
+<section class="mtr-env mtr-prf" data-address="forgetful+1" data-source-line="169">
 <div class="mtr-env-head"><span class="mtr-env-name">証明</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="170">[示すこと: <span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">U</span></span></span></span></span>は関手である]</div>
@@ -569,7 +595,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-ex" id="inclusion" data-source-line="177">
+<section class="mtr-env mtr-ex" id="inclusion" data-address="inclusion" data-source-line="177">
 <div class="mtr-env-head"><span class="mtr-env-name">例</span><span class="mtr-env-number">9</span><span class="mtr-env-title">包含関手</span><span class="mtr-env-id">@inclusion</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="178"><span class="mtr-math mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="script">S</mi></mrow><annotation encoding="application/x-tex">\mathcal{S}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathcal" style="margin-right:0.075em;">S</span></span></span></span></span>: <span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="script">C</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathcal" style="margin-right:0.0583em;">C</span></span></span></span></span>の部分圏(<span class="mtr-ref"><a href="%231.html#subcategory">部分圏<span class="mtr-ref-file">category/#1</span></a><span class="mtr-ref-popup"><section class="mtr-env mtr-def" data-source-line="214">
@@ -594,7 +620,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-prf" data-source-line="185">
+<section class="mtr-env mtr-prf" data-address="inclusion+1" data-source-line="185">
 <div class="mtr-env-head"><span class="mtr-env-name">証明</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="186">[示すこと: 包含関手は合成と恒等射を保つ]</div>
@@ -604,7 +630,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-ex" id="free-vect" data-source-line="190">
+<section class="mtr-env mtr-ex" id="free-vect" data-address="free-vect" data-source-line="190">
 <div class="mtr-env-head"><span class="mtr-env-name">例</span><span class="mtr-env-number">10</span><span class="mtr-env-title">自由ベクトル空間</span><span class="mtr-env-id">@free-vect</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="191"><span class="mtr-math mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">K</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0715em;">K</span></span></span></span></span>: 体</div>
@@ -619,7 +645,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-prf" data-source-line="202">
+<section class="mtr-env mtr-prf" data-address="free-vect+1" data-source-line="202">
 <div class="mtr-env-head"><span class="mtr-env-name">証明</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="203">線形写像は基底での値で定まる。</div>
@@ -641,7 +667,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-ex" id="powerset-functor" data-source-line="217">
+<section class="mtr-env mtr-ex" id="powerset-functor" data-address="powerset-functor" data-source-line="217">
 <div class="mtr-env-head"><span class="mtr-env-name">例</span><span class="mtr-env-number">11</span><span class="mtr-env-title">冪集合</span><span class="mtr-env-id">@powerset-functor</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="218">写像<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>X</mi><mo>→</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">f: X \to Y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0785em;">X</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.2222em;">Y</span></span></span></span></span>に対し、以下のように定める。</div>
@@ -655,7 +681,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-prf" data-source-line="226">
+<section class="mtr-env mtr-prf" data-address="powerset-functor+1" data-source-line="226">
 <div class="mtr-env-head"><span class="mtr-env-name">証明</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="227"><span class="mtr-math mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>X</mi><mo>→</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">f: X \to Y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0785em;">X</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.2222em;">Y</span></span></span></span></span>を取る。</div>
@@ -682,7 +708,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-ex" id="monotone-functor" data-source-line="244">
+<section class="mtr-env mtr-ex" id="monotone-functor" data-address="monotone-functor" data-source-line="244">
 <div class="mtr-env-head"><span class="mtr-env-name">例</span><span class="mtr-env-number">12</span><span class="mtr-env-title">前順序集合の間の関手</span><span class="mtr-env-id">@monotone-functor</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="245"><span class="mtr-math mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo separator="true">,</mo><mi>Q</mi></mrow><annotation encoding="application/x-tex">P, Q</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">P</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">Q</span></span></span></span></span>: 前順序集合(<span class="mtr-ref"><a href="%231.html#preorder-category">前順序集合<span class="mtr-ref-file">category/#1</span></a><span class="mtr-ref-popup"><section class="mtr-env mtr-ex" data-source-line="113">
@@ -711,7 +737,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-prf" data-source-line="253">
+<section class="mtr-env mtr-prf" data-address="monotone-functor+1" data-source-line="253">
 <div class="mtr-env-head"><span class="mtr-env-name">証明</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="254">[示すこと: 関手<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span></span></span></span></span>について、<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>≤</mo><mi>y</mi><mtext>  </mtext><mo>⟹</mo><mtext>  </mtext><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>≤</mo><mi>F</mi><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">x \le y \implies F(x) \le F(y)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.7194em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">⟹</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.0359em;">y</span><span class="mclose">)</span></span></span></span></span>]</div>
@@ -738,7 +764,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-ex" id="monoid-hom-functor" data-source-line="271">
+<section class="mtr-env mtr-ex" id="monoid-hom-functor" data-address="monoid-hom-functor" data-source-line="271">
 <div class="mtr-env-head"><span class="mtr-env-name">例</span><span class="mtr-env-number">13</span><span class="mtr-env-title">モノイド準同型</span><span class="mtr-env-id">@monoid-hom-functor</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="272"><span class="mtr-math mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo separator="true">,</mo><mi>N</mi></mrow><annotation encoding="application/x-tex">M, N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">M</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">N</span></span></span></span></span>: モノイド</div>
@@ -767,7 +793,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-prf" data-source-line="281">
+<section class="mtr-env mtr-prf" data-address="monoid-hom-functor+1" data-source-line="281">
 <div class="mtr-env-head"><span class="mtr-env-name">証明</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="282"><span class="mtr-math mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mi mathvariant="normal">O</mi><mi mathvariant="normal">b</mi></mrow><mo stretchy="false">(</mo><mi mathvariant="bold">B</mi><mi>N</mi><mo stretchy="false">)</mo><mo>=</mo><mrow><mo fence="true">{</mo><mo>∗</mo><mo fence="true">}</mo></mrow></mrow><annotation encoding="application/x-tex">\mathrm{Ob}(\mathbf{B}N) = \set{*}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathrm">Ob</span></span><span class="mopen">(</span><span class="mord mathbf">B</span><span class="mord mathnormal" style="margin-right:0.109em;">N</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">{</span><span class="mord">∗</span><span class="mclose delimcenter" style="top:0em;">}</span></span></span></span></span></span>だから、関手<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>:</mo><mi mathvariant="bold">B</mi><mi>M</mi><mo>→</mo><mi mathvariant="bold">B</mi><mi>N</mi></mrow><annotation encoding="application/x-tex">F: \mathbf{B}M \to \mathbf{B}N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6861em;"></span><span class="mord mathbf">B</span><span class="mord mathnormal" style="margin-right:0.109em;">M</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6861em;"></span><span class="mord mathbf">B</span><span class="mord mathnormal" style="margin-right:0.109em;">N</span></span></span></span></span>について<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo stretchy="false">(</mo><mo>∗</mo><mo stretchy="false">)</mo><mo>=</mo><mo>∗</mo></mrow><annotation encoding="application/x-tex">F(*) = *</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="mopen">(</span><span class="mord">∗</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.4653em;"></span><span class="mord">∗</span></span></span></span></span>である。</div>
@@ -787,7 +813,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-ex" id="action-functor" data-source-line="294">
+<section class="mtr-env mtr-ex" id="action-functor" data-address="action-functor" data-source-line="294">
 <div class="mtr-env-head"><span class="mtr-env-name">例</span><span class="mtr-env-number">14</span><span class="mtr-env-title">群の作用</span><span class="mtr-env-id">@action-functor</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="295"><span class="mtr-math mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi></mrow><annotation encoding="application/x-tex">G</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal">G</span></span></span></span></span>: 群</div>
@@ -802,7 +828,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-prf" data-source-line="306">
+<section class="mtr-env mtr-prf" data-address="action-functor+1" data-source-line="306">
 <div class="mtr-env-head"><span class="mtr-env-name">証明</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="307">[示すこと: <span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span></span></span></span></span>が関手 <span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>  </mtext><mo>⟺</mo><mtext>  </mtext></mrow><annotation encoding="application/x-tex">\iff</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.549em;vertical-align:-0.024em;"></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">⟺</span><span class="mspace" style="margin-right:0.2778em;"></span></span></span></span></span> <span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>⋅</mo></mrow><annotation encoding="application/x-tex">\cdot</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4445em;"></span><span class="mord">⋅</span></span></span></span></span>が左作用]</div>
@@ -827,7 +853,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-rem" data-source-line="320">
+<section class="mtr-env mtr-rem" data-address="action-functor+2" data-source-line="320">
 <div class="mtr-env-head"><span class="mtr-env-name">注意</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="321"><span class="mtr-ref"><a href="#action-functor">群の作用</a><span class="mtr-ref-popup"><section class="mtr-env mtr-ex" data-source-line="294">
@@ -848,7 +874,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-ex" id="units-functor" data-source-line="325">
+<section class="mtr-env mtr-ex" id="units-functor" data-address="units-functor" data-source-line="325">
 <div class="mtr-env-head"><span class="mtr-env-name">例</span><span class="mtr-env-number">15</span><span class="mtr-env-title">単元群</span><span class="mtr-env-id">@units-functor</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="326">環<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0077em;">R</span></span></span></span></span>に対し、<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>R</mi><mo>×</mo></msup></mrow><annotation encoding="application/x-tex">R^\times</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7713em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0077em;">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7713em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mbin mtight">×</span></span></span></span></span></span></span></span></span></span></span></span>を<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0077em;">R</span></span></span></span></span>の単元群とする。</div>
@@ -857,7 +883,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-prf" data-source-line="331">
+<section class="mtr-env mtr-prf" data-address="units-functor+1" data-source-line="331">
 <div class="mtr-env-head"><span class="mtr-env-name">証明</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="332"><span class="mtr-math mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>R</mi><mo>→</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">f: R \to S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0077em;">R</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0576em;">S</span></span></span></span></span>: 環準同型 を取る。</div>
@@ -880,7 +906,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-ex" id="gl-functor" data-source-line="347">
+<section class="mtr-env mtr-ex" id="gl-functor" data-address="gl-functor" data-source-line="347">
 <div class="mtr-env-head"><span class="mtr-env-name">例</span><span class="mtr-env-number">16</span><span class="mtr-env-title">一般線形群</span><span class="mtr-env-id">@gl-functor</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="348"><span class="mtr-math"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>≥</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n \ge 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7719em;vertical-align:-0.136em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span></div>
@@ -891,7 +917,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-prf" data-source-line="355">
+<section class="mtr-env mtr-prf" data-address="gl-functor+1" data-source-line="355">
 <div class="mtr-env-head"><span class="mtr-env-name">証明</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="356"><span class="mtr-math mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>R</mi><mo>→</mo><mi>S</mi></mrow><annotation encoding="application/x-tex">f: R \to S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0077em;">R</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0576em;">S</span></span></span></span></span>: 環準同型 を取る。</div>
@@ -917,7 +943,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-ex" id="matrix-functor" data-source-line="374">
+<section class="mtr-env mtr-ex" id="matrix-functor" data-address="matrix-functor" data-source-line="374">
 <div class="mtr-env-head"><span class="mtr-env-name">例</span><span class="mtr-env-number">17</span><span class="mtr-env-title">行列と線形写像</span><span class="mtr-env-id">@matrix-functor</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="375"><span class="mtr-math mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">K</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0715em;">K</span></span></span></span></span>: 体</div>
@@ -943,7 +969,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-prf" data-source-line="382">
+<section class="mtr-env mtr-prf" data-address="matrix-functor+1" data-source-line="382">
 <div class="mtr-env-head"><span class="mtr-env-name">証明</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="383">[示すこと: <span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>L</mi><mrow><mi>B</mi><mi>A</mi></mrow></msub><mo>=</mo><msub><mi>L</mi><mi>B</mi></msub><mo>∘</mo><msub><mi>L</mi><mi>A</mi></msub></mrow><annotation encoding="application/x-tex">L_{BA} = L_B \circ L_A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.0502em;">B</span><span class="mord mathnormal mtight">A</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0502em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∘</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">A</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span>]</div>
@@ -962,14 +988,14 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-h2" data-source-line="394">
+<section class="mtr-env mtr-h2" data-address="matrix-functor+2" data-source-line="394">
 <div class="mtr-env-head"><span class="mtr-env-name">h2</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="395">二変数の関手</div>
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-prop" id="bifunctor" data-source-line="398">
+<section class="mtr-env mtr-prop" id="bifunctor" data-address="bifunctor" data-source-line="398">
 <div class="mtr-env-head"><span class="mtr-env-name">命題</span><span class="mtr-env-number">18</span><span class="mtr-env-title">二変数の関手</span><span class="mtr-env-id">@bifunctor</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="399"><span class="mtr-math mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="script">B</mi><mo separator="true">,</mo><mi mathvariant="script">C</mi><mo separator="true">,</mo><mi mathvariant="script">D</mi></mrow><annotation encoding="application/x-tex">\mathcal{B}, \mathcal{C}, \mathcal{D}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord mathcal" style="margin-right:0.0304em;">B</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathcal" style="margin-right:0.0583em;">C</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathcal" style="margin-right:0.0278em;">D</span></span></span></span></span>: 圏</div>
@@ -1009,7 +1035,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-prf" data-source-line="420">
+<section class="mtr-env mtr-prf" data-address="bifunctor+1" data-source-line="420">
 <div class="mtr-env-head"><span class="mtr-env-name">証明</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="421">[示すこと: <span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo stretchy="false">(</mo><msub><mrow><mi mathvariant="normal">i</mi><mi mathvariant="normal">d</mi></mrow><mi>A</mi></msub><mo separator="true">,</mo><msub><mrow><mi mathvariant="normal">i</mi><mi mathvariant="normal">d</mi></mrow><mi>B</mi></msub><mo stretchy="false">)</mo><mo>=</mo><msub><mrow><mi mathvariant="normal">i</mi><mi mathvariant="normal">d</mi></mrow><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>A</mi><mo separator="true">,</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></msub></mrow><annotation encoding="application/x-tex">F(\id_A, \id_B) = \id_{F(A, B)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="mopen">(</span><span class="mord"><span class="mord"><span class="mord mathrm">id</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">A</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">id</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.0502em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:1.0496em;vertical-align:-0.3552em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">id</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.5198em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.1389em;">F</span><span class="mopen mtight">(</span><span class="mord mathnormal mtight">A</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.0502em;">B</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3552em;"><span></span></span></span></span></span></span></span></span></span></span>]</div>
@@ -1047,7 +1073,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-ex" id="hom-functor" data-source-line="445">
+<section class="mtr-env mtr-ex" id="hom-functor" data-address="hom-functor" data-source-line="445">
 <div class="mtr-env-head"><span class="mtr-env-name">例</span><span class="mtr-env-number">19</span><span class="mtr-env-title">Hom関手</span><span class="mtr-env-id">@hom-functor</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="446"><span class="mtr-math mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="script">C</mi></mrow><annotation encoding="application/x-tex">\mathcal{C}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathcal" style="margin-right:0.0583em;">C</span></span></span></span></span>: 圏</div>
@@ -1063,7 +1089,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-prf" data-source-line="456">
+<section class="mtr-env mtr-prf" data-address="hom-functor+1" data-source-line="456">
 <div class="mtr-env-head"><span class="mtr-env-name">証明</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="457"><span class="mtr-ref"><a href="#bifunctor">二変数の関手</a><span class="mtr-ref-popup"><section class="mtr-env mtr-prop" data-source-line="398">
@@ -1123,7 +1149,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-ex" id="dual-functor" data-source-line="482">
+<section class="mtr-env mtr-ex" id="dual-functor" data-address="dual-functor" data-source-line="482">
 <div class="mtr-env-head"><span class="mtr-env-name">例</span><span class="mtr-env-number">20</span><span class="mtr-env-title">双対空間</span><span class="mtr-env-id">@dual-functor</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="483"><span class="mtr-math mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">K</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0715em;">K</span></span></span></span></span>: 体</div>
@@ -1145,7 +1171,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-prf" data-source-line="493">
+<section class="mtr-env mtr-prf" data-address="dual-functor+1" data-source-line="493">
 <div class="mtr-env-head"><span class="mtr-env-name">証明</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="494">[示すこと: <span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>f</mi><mo>∗</mo></msup></mrow><annotation encoding="application/x-tex">f^*</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6887em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="katex-sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span></span></span></span></span>は線形写像]</div>
@@ -1205,14 +1231,14 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-h2" data-source-line="508">
+<section class="mtr-env mtr-h2" data-address="dual-functor+2" data-source-line="508">
 <div class="mtr-env-head"><span class="mtr-env-name">h2</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="509">忠実・充満</div>
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-def" id="faithful-full" data-source-line="512">
+<section class="mtr-env mtr-def" id="faithful-full" data-address="faithful-full" data-source-line="512">
 <div class="mtr-env-head"><span class="mtr-env-name">定義</span><span class="mtr-env-number">21</span><span class="mtr-env-title">忠実・充満・本質的全射</span><span class="mtr-env-id">@faithful-full</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="513"><span class="mtr-math mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>:</mo><mi mathvariant="script">C</mi><mo>→</mo><mi mathvariant="script">D</mi></mrow><annotation encoding="application/x-tex">F: \mathcal{C} \to \mathcal{D}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathcal" style="margin-right:0.0583em;">C</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathcal" style="margin-right:0.0278em;">D</span></span></span></span></span>: 関手</div>
@@ -1226,7 +1252,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-prop" id="functor-reflects" data-source-line="523">
+<section class="mtr-env mtr-prop" id="functor-reflects" data-address="functor-reflects" data-source-line="523">
 <div class="mtr-env-head"><span class="mtr-env-name">命題</span><span class="mtr-env-number">22</span><span class="mtr-env-title">関手が反映するもの</span><span class="mtr-env-id">@functor-reflects</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="524"><span class="mtr-math mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo>:</mo><mi mathvariant="script">C</mi><mo>→</mo><mi mathvariant="script">D</mi></mrow><annotation encoding="application/x-tex">F: \mathcal{C} \to \mathcal{D}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathcal" style="margin-right:0.0583em;">C</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathcal" style="margin-right:0.0278em;">D</span></span></span></span></span>: 関手</div>
@@ -1243,7 +1269,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-prf" data-source-line="535">
+<section class="mtr-env mtr-prf" data-address="functor-reflects+1" data-source-line="535">
 <div class="mtr-env-head"><span class="mtr-env-name">証明</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="536">[示すこと: <span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi></mrow><annotation encoding="application/x-tex">F</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span></span></span></span></span>が忠実で<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">F(f)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.1389em;">F</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span><span class="mclose">)</span></span></span></span></span>がモノ射ならば、<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.1076em;">f</span></span></span></span></span>はモノ射]</div>
@@ -1286,7 +1312,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-ex" id="faithful-examples" data-source-line="559">
+<section class="mtr-env mtr-ex" id="faithful-examples" data-address="faithful-examples" data-source-line="559">
 <div class="mtr-env-head"><span class="mtr-env-name">例</span><span class="mtr-env-number">23</span><span class="mtr-env-title">忠実・充満の例</span><span class="mtr-env-id">@faithful-examples</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="560">1. 忘却関手(<span class="mtr-ref"><a href="#forgetful">忘却関手</a><span class="mtr-ref-popup"><section class="mtr-env mtr-ex" data-source-line="162">
@@ -1325,7 +1351,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-prf" data-source-line="567">
+<section class="mtr-env mtr-prf" data-address="faithful-examples+1" data-source-line="567">
 <div class="mtr-env-head"><span class="mtr-env-name">証明</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="568">[示すこと: 忘却関手<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi></mrow><annotation encoding="application/x-tex">U</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.109em;">U</span></span></span></span></span>は忠実]</div>
@@ -1456,6 +1482,135 @@ body {
   addEventListener("resize", follow);
 })();
 </script>
+<script>
+(() => {
+  const { endpoint, documentKey } = {"endpoint":"https://script.google.com/macros/s/AKfycbzNFIHIx9wnndXFI9vyMKv_w8BXXpdlZ_xXUIoXRjuaokGkGjluwjlgnh-27LgV-unIKg/exec","documentKey":"category/#3"};
+  const SECRETS = "mtr-memo-secrets";
+  const NAME = "mtr-memo-name";
 
+  // localStorage が使えない(プライベートウィンドウなど)ときは覚えないだけ
+  const load = (key, fallback) => {
+    try { return JSON.parse(localStorage.getItem(key)) ?? fallback; } catch { return fallback; }
+  };
+  const save = (key, value) => {
+    try { localStorage.setItem(key, JSON.stringify(value)); } catch {}
+  };
+
+  const unwrap = async (response) => {
+    const body = await response.json();
+    if (body.error !== undefined) throw new Error(body.error);
+    return body;
+  };
+  const get = () => fetch(endpoint + "?document=" + encodeURIComponent(documentKey)).then(unwrap);
+  // text/plain ならプリフライトなしで送れる
+  const post = (request) =>
+    fetch(endpoint, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(request) }).then(unwrap);
+
+  const element = (tag, properties, ...children) => {
+    const node = Object.assign(document.createElement(tag), properties);
+    node.append(...children);
+    return node;
+  };
+  const randomKey = () => Array.from(crypto.getRandomValues(new Uint8Array(16)), (b) => b.toString(16).padStart(2, "0")).join("");
+  const formatTime = (time) => new Date(time).toLocaleString("ja-JP", { dateStyle: "medium", timeStyle: "short" });
+
+  /** address → 環境のメモ欄 */
+  const boxes = new Map();
+
+  class MemoBox {
+    constructor(section) {
+      this.address = section.dataset.address;
+      this.memos = [];
+      this.count = element("span", { className: "mtr-memo-count" });
+      this.toggle = element("button", { type: "button", className: "mtr-memo-toggle" }, "メモ", this.count);
+      this.toggle.setAttribute("aria-expanded", "false");
+      this.list = element("ul", { className: "mtr-memo-list" });
+      this.text = element("textarea", { name: "text", required: true, maxLength: 2000, rows: 3, placeholder: "この環境へのメモ(Ctrl+Enter で書き込む)" });
+      this.name = element("input", { name: "name", maxLength: 50, placeholder: "名前(任意)", value: load(NAME, "") });
+      this.submit = element("button", { type: "submit" }, "書き込む");
+      this.status = element("span", { className: "mtr-memo-status" });
+      this.form = element("form", { className: "mtr-memo-form" }, this.text, element("div", {}, this.name, this.submit, this.status));
+      this.panel = element("div", { className: "mtr-memo", hidden: true }, this.list, this.form);
+      section.querySelector(":scope > .mtr-env-head").append(this.toggle);
+      section.append(this.panel);
+
+      this.toggle.addEventListener("click", () => this.open(this.panel.hidden));
+      this.text.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" && (event.ctrlKey || event.metaKey)) this.form.requestSubmit();
+      });
+      this.form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        this.add().catch((error) => (this.status.textContent = "書き込めませんでした: " + error.message));
+      });
+    }
+
+    open(open) {
+      this.panel.hidden = !open;
+      this.toggle.setAttribute("aria-expanded", String(open));
+      if (open) this.text.focus();
+    }
+
+    async add() {
+      const secret = randomKey();
+      this.submit.disabled = true;
+      this.status.textContent = "送信中…";
+      try {
+        const { memo } = await post({ action: "add", document: documentKey, address: this.address, name: this.name.value, text: this.text.value, secret });
+        save(SECRETS, { ...load(SECRETS, {}), [memo.id]: secret });
+        save(NAME, this.name.value.trim());
+        this.text.value = "";
+        this.status.textContent = "";
+        this.show([...this.memos, memo]);
+      } finally {
+        this.submit.disabled = false;
+      }
+    }
+
+    async remove(memo, secret) {
+      if (!confirm("このメモを削除しますか?")) return;
+      try {
+        await post({ action: "delete", id: memo.id, secret });
+        const { [memo.id]: _, ...rest } = load(SECRETS, {});
+        save(SECRETS, rest);
+        this.show(this.memos.filter((m) => m !== memo));
+      } catch (error) {
+        this.status.textContent = "削除できませんでした: " + error.message;
+      }
+    }
+
+    show(memos) {
+      this.memos = memos;
+      const secrets = load(SECRETS, {});
+      this.list.replaceChildren(...memos.map((memo) => {
+        const meta = element("div", { className: "mtr-memo-meta" },
+          element("span", { className: "mtr-memo-name" }, memo.name || "名無し"),
+          element("time", { dateTime: memo.time }, formatTime(memo.time)));
+        const secret = secrets[memo.id];
+        if (secret !== undefined) {
+          const remove = element("button", { type: "button" }, "削除");
+          remove.addEventListener("click", () => this.remove(memo, secret));
+          meta.append(remove);
+        }
+        return element("li", {}, meta, element("div", { className: "mtr-memo-text" }, memo.text));
+      }));
+      this.count.textContent = memos.length === 0 ? "" : String(memos.length);
+      this.toggle.classList.toggle("mtr-memo-has", memos.length > 0);
+    }
+  }
+
+  for (const section of document.querySelectorAll(".mtr-env[data-address]")) {
+    const box = new MemoBox(section);
+    boxes.set(box.address, box);
+  }
+  get().then(
+    ({ memos }) => {
+      for (const box of boxes.values()) box.show(memos.filter((memo) => memo.address === box.address));
+    },
+    (error) => {
+      for (const box of boxes.values()) box.status.textContent = "メモを読み込めませんでした: " + error.message;
+    },
+  );
+})();
+</script>
 </body>
 </html>

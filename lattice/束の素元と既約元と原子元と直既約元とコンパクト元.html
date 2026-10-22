@@ -258,6 +258,32 @@ body {
 .mtr-site-trail a:hover, .mtr-site-pager a:hover, .mtr-site-folder a:hover { text-decoration: underline; }
 .mtr-site-folder h2 { font-size: 1.1rem; margin: 1.5rem 0 0.3rem; }
 .mtr-site-folder ul { margin: 0; padding-left: 1.2em; }
+
+.mtr-memo-toggle {
+  float: right; margin-left: 0.5em; padding: 0 0.2em;
+  font: inherit; font-size: 0.8em; font-weight: normal;
+  color: var(--mtr-muted); background: none; border: none; cursor: pointer;
+}
+.mtr-memo-toggle:hover, .mtr-memo-toggle[aria-expanded="true"], .mtr-memo-has { color: var(--mtr-accent); }
+.mtr-memo-count:not(:empty)::before { content: " "; }
+.mtr-memo { margin-top: 0.6em; padding-top: 0.6em; border-top: 1px dashed var(--mtr-env-border); font-size: 0.9em; }
+.mtr-memo-list { list-style: none; margin: 0 0 0.6em; padding: 0; }
+.mtr-memo-list:empty { display: none; }
+.mtr-memo-list li + li { margin-top: 0.5em; }
+.mtr-memo-meta { display: flex; gap: 0.8em; font-size: 0.85em; color: var(--mtr-muted); }
+.mtr-memo-meta button { padding: 0; font: inherit; color: inherit; background: none; border: none; text-decoration: underline; cursor: pointer; }
+.mtr-memo-text { white-space: pre-wrap; overflow-wrap: anywhere; }
+.mtr-memo-form textarea, .mtr-memo-form input {
+  box-sizing: border-box; padding: 0.3em 0.5em;
+  font: inherit; color: inherit; background: var(--mtr-background);
+  border: 1px solid var(--mtr-env-border); border-radius: 4px;
+}
+.mtr-memo-form textarea { display: block; width: 100%; resize: vertical; }
+.mtr-memo-form div { display: flex; flex-wrap: wrap; gap: 0.5em; align-items: center; margin-top: 0.4em; }
+.mtr-memo-form input { width: 10em; min-width: 0; }
+.mtr-memo-form button { font: inherit; cursor: pointer; }
+.mtr-memo-status { font-size: 0.85em; color: var(--mtr-muted); }
+@media print { .mtr-memo, .mtr-memo-toggle { display: none !important; } }
 </style>
 </head>
 <body>
@@ -266,7 +292,7 @@ body {
 
 <div class="mtr-line" data-depth="0" data-source-line="5">自分用のノート</div>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-h1" data-source-line="7">
+<section class="mtr-env mtr-h1" data-address="+1" data-source-line="7">
 <div class="mtr-env-head"><span class="mtr-env-name">h1</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="8">前提</div>
@@ -316,7 +342,7 @@ body {
 </div>
 </section></span></span>)は「順序と束の基本」のものを使う。</div>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-def" data-source-line="13">
+<section class="mtr-env mtr-def" data-address="+2" data-source-line="13">
 <div class="mtr-env-head"><span class="mtr-env-name">定義</span><span class="mtr-env-number">1</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="14">完備束<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal">L</span></span></span></span></span>上の二項関係を以下で定める。</div>
@@ -326,14 +352,14 @@ body {
 <div class="mtr-blank"></div>
 <div class="mtr-blank"></div>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-h1" data-source-line="20">
+<section class="mtr-env mtr-h1" data-address="+3" data-source-line="20">
 <div class="mtr-env-head"><span class="mtr-env-name">h1</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="21">定義</div>
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-def" data-source-line="24">
+<section class="mtr-env mtr-def" data-address="+4" data-source-line="24">
 <div class="mtr-env-head"><span class="mtr-env-name">定義</span><span class="mtr-env-number">2</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="25"><span class="mtr-math mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span>を持つ上半束<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal">L</span></span></span></span></span>において、</div>
@@ -355,7 +381,7 @@ body {
 </section>
 <div class="mtr-blank"></div>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-def" data-source-line="43">
+<section class="mtr-env mtr-def" data-address="+5" data-source-line="43">
 <div class="mtr-env-head"><span class="mtr-env-name">定義</span><span class="mtr-env-number">3</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="44"><span class="mtr-math mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span>を持つ上半束<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal">L</span></span></span></span></span>において、</div>
@@ -376,7 +402,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-def" id="atom" data-source-line="61">
+<section class="mtr-env mtr-def" id="atom" data-address="atom" data-source-line="61">
 <div class="mtr-env-head"><span class="mtr-env-name">定義</span><span class="mtr-env-number">4</span><span class="mtr-env-title">原子元と余原子元</span><span class="mtr-env-id">@atom</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="62"><span class="mtr-math mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span>を持つ半順序集合<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal">L</span></span></span></span></span>において、</div>
@@ -389,7 +415,7 @@ body {
 </section>
 <div class="mtr-blank"></div>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-def" id="direct-irreducible" data-source-line="71">
+<section class="mtr-env mtr-def" id="direct-irreducible" data-address="direct-irreducible" data-source-line="71">
 <div class="mtr-env-head"><span class="mtr-env-name">定義</span><span class="mtr-env-number">5</span><span class="mtr-env-title">直既約元</span><span class="mtr-env-id">@direct-irreducible</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="72"><span class="mtr-math mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span>を持つ束<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal">L</span></span></span></span></span>において、</div>
@@ -408,7 +434,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-def" id="compact" data-source-line="87">
+<section class="mtr-env mtr-def" id="compact" data-address="compact" data-source-line="87">
 <div class="mtr-env-head"><span class="mtr-env-name">定義</span><span class="mtr-env-number">6</span><span class="mtr-env-title">コンパクト元</span><span class="mtr-env-id">@compact</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="88">完備束<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal">L</span></span></span></span></span>と<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>∈</mo><mi>L</mi></mrow><annotation encoding="application/x-tex">a \in L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal">L</span></span></span></span></span>に対し、<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span></span>が**コンパクト元**とは、以下を満たすことを言う。</div>
@@ -417,7 +443,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-prop" data-source-line="93">
+<section class="mtr-env mtr-prop" data-address="compact+1" data-source-line="93">
 <div class="mtr-env-head"><span class="mtr-env-name">命題</span><span class="mtr-env-number">7</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="94"><span class="mtr-math mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal">L</span></span></span></span></span>を完備束とする。次が成り立つとき<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>∈</mo><mi>L</mi></mrow><annotation encoding="application/x-tex">x \in L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal">L</span></span></span></span></span>は**有限**であると言われる。</div>
@@ -428,7 +454,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-prf" data-source-line="101">
+<section class="mtr-env mtr-prf" data-address="compact+2" data-source-line="101">
 <div class="mtr-env-head"><span class="mtr-env-name">証明</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="102">[コンパクト元ならば有限]</div>
@@ -453,7 +479,7 @@ body {
 <div class="mtr-blank"></div>
 <div class="mtr-blank"></div>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-def" id="finitely-generated" data-source-line="123">
+<section class="mtr-env mtr-def" id="finitely-generated" data-address="finitely-generated" data-source-line="123">
 <div class="mtr-env-head"><span class="mtr-env-name">定義</span><span class="mtr-env-number">8</span><span class="mtr-env-title">有限生成元</span><span class="mtr-env-id">@finitely-generated</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="124">完備束<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal">L</span></span></span></span></span>と<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>∈</mo><mi>L</mi></mrow><annotation encoding="application/x-tex">a \in L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal">L</span></span></span></span></span>に対し、<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span></span>が**有限生成**とは、以下を満たすことを言う。</div>
@@ -463,7 +489,7 @@ body {
 </section>
 <div class="mtr-blank"></div>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-h1" data-source-line="130">
+<section class="mtr-env mtr-h1" data-address="finitely-generated+1" data-source-line="130">
 <div class="mtr-env-head"><span class="mtr-env-name">h1</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="131">それぞれが一致する条件</div>
@@ -472,7 +498,7 @@ body {
 <div class="mtr-blank"></div>
 <div class="mtr-blank"></div>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-prop" data-source-line="136">
+<section class="mtr-env mtr-prop" data-address="finitely-generated+2" data-source-line="136">
 <div class="mtr-env-head"><span class="mtr-env-name">命題</span><span class="mtr-env-number">9</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="137"><span class="mtr-math mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span>を持つ上半束において、</div>
@@ -489,7 +515,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-prf" data-source-line="150">
+<section class="mtr-env mtr-prf" data-address="finitely-generated+3" data-source-line="150">
 <div class="mtr-env-head"><span class="mtr-env-name">証明</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="151">双対的であるから交わりの方だけ示す。</div>
@@ -548,7 +574,7 @@ body {
 <div class="mtr-blank"></div>
 <div class="mtr-blank"></div>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-rem" data-source-line="206">
+<section class="mtr-env mtr-rem" data-address="finitely-generated+4" data-source-line="206">
 <div class="mtr-env-head"><span class="mtr-env-name">注意</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="207">既約元 ⇒ 素元は成り立たない。</div>
@@ -566,7 +592,7 @@ body {
 </section>
 <div class="mtr-blank"></div>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-rem" data-source-line="221">
+<section class="mtr-env mtr-rem" data-address="finitely-generated+5" data-source-line="221">
 <div class="mtr-env-head"><span class="mtr-env-name">注意</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="222">既約元 ⇒ 原子元も成り立たない。</div>
@@ -577,7 +603,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-rem" data-source-line="229">
+<section class="mtr-env mtr-rem" data-address="finitely-generated+6" data-source-line="229">
 <div class="mtr-env-head"><span class="mtr-env-name">注意</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="230">直既約元 ⇒ 既約元も成り立たない。</div>
@@ -590,7 +616,7 @@ body {
 <div class="mtr-blank"></div>
 <div class="mtr-blank"></div>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-prop" data-source-line="239">
+<section class="mtr-env mtr-prop" data-address="finitely-generated+7" data-source-line="239">
 <div class="mtr-env-head"><span class="mtr-env-name">命題</span><span class="mtr-env-number">10</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="240"><span class="mtr-math mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span>を持つ分配束<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">D</span></span></span></span></span>において、</div>
@@ -601,7 +627,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-prf" data-source-line="247">
+<section class="mtr-env mtr-prf" data-address="finitely-generated+8" data-source-line="247">
 <div class="mtr-env-head"><span class="mtr-env-name">証明</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="248">双対的であるから交わりの方だけ示す。</div>
@@ -628,7 +654,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-prop" data-source-line="271">
+<section class="mtr-env mtr-prop" data-address="finitely-generated+9" data-source-line="271">
 <div class="mtr-env-head"><span class="mtr-env-name">命題</span><span class="mtr-env-number">11</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="272"><span class="mtr-math mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span>を持つ分配束<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0278em;">D</span></span></span></span></span>において、</div>
@@ -639,7 +665,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-prf" data-source-line="279">
+<section class="mtr-env mtr-prf" data-address="finitely-generated+10" data-source-line="279">
 <div class="mtr-env-head"><span class="mtr-env-name">証明</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="280">双対的であるから交わりの方だけ示す。</div>
@@ -668,7 +694,7 @@ body {
 </section>
 <div class="mtr-blank"></div>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-rem" data-source-line="305">
+<section class="mtr-env mtr-rem" data-address="finitely-generated+11" data-source-line="305">
 <div class="mtr-env-head"><span class="mtr-env-name">注意</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="306"><span class="mtr-math mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span>を持つ分配束においても素元 ⇒ 原子元は成り立たない。</div>
@@ -679,7 +705,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-prop" data-source-line="313">
+<section class="mtr-env mtr-prop" data-address="finitely-generated+12" data-source-line="313">
 <div class="mtr-env-head"><span class="mtr-env-name">命題</span><span class="mtr-env-number">12</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="314">Boole代数<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.0502em;">B</span></span></span></span></span>において以下が成り立つ。</div>
@@ -692,7 +718,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-prf" data-source-line="323">
+<section class="mtr-env mtr-prf" data-address="finitely-generated+13" data-source-line="323">
 <div class="mtr-env-head"><span class="mtr-env-name">証明</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="324">双対的であるから交わりの方だけ示す。</div>
@@ -745,14 +771,14 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-lem" id="atom-compact" data-source-line="373">
+<section class="mtr-env mtr-lem" id="atom-compact" data-address="atom-compact" data-source-line="373">
 <div class="mtr-env-head"><span class="mtr-env-name">補題</span><span class="mtr-env-number">13</span><span class="mtr-env-title">原子元はコンパクト元</span><span class="mtr-env-id">@atom-compact</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="374">完備束<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal">L</span></span></span></span></span>において、全ての原子元はコンパクト元である。</div>
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-prf" data-source-line="377">
+<section class="mtr-env mtr-prf" data-address="atom-compact+1" data-source-line="377">
 <div class="mtr-env-head"><span class="mtr-env-name">証明</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="378"><span class="mtr-math mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>∈</mo><mi>L</mi></mrow><annotation encoding="application/x-tex">a \in L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal">L</span></span></span></span></span>を原子元とする。</div>
@@ -767,7 +793,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-rem" data-source-line="389">
+<section class="mtr-env mtr-rem" data-address="atom-compact+2" data-source-line="389">
 <div class="mtr-env-head"><span class="mtr-env-name">注意</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="390">逆は成り立たない。</div>
@@ -782,14 +808,14 @@ body {
 <div class="mtr-blank"></div>
 <div class="mtr-blank"></div>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-prop" id="compact-fg" data-source-line="401">
+<section class="mtr-env mtr-prop" id="compact-fg" data-address="compact-fg" data-source-line="401">
 <div class="mtr-env-head"><span class="mtr-env-name">命題</span><span class="mtr-env-number">14</span><span class="mtr-env-title">コンパクト元は有限生成</span><span class="mtr-env-id">@compact-fg</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="402">完備束<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal">L</span></span></span></span></span>において、コンパクト元は有限生成である。</div>
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-prf" data-source-line="405">
+<section class="mtr-env mtr-prf" data-address="compact-fg+1" data-source-line="405">
 <div class="mtr-env-head"><span class="mtr-env-name">証明</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="406"><span class="mtr-math mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>∈</mo><mi>L</mi></mrow><annotation encoding="application/x-tex">a \in L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal">L</span></span></span></span></span>:コンパクト元</div>
@@ -806,7 +832,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-rem" data-source-line="419">
+<section class="mtr-env mtr-rem" data-address="compact-fg+2" data-source-line="419">
 <div class="mtr-env-head"><span class="mtr-env-name">注意</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="420">逆は成り立たない。</div>
@@ -842,14 +868,14 @@ body {
 </section>
 <div class="mtr-blank"></div>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-prop" data-source-line="452">
+<section class="mtr-env mtr-prop" data-address="compact-fg+3" data-source-line="452">
 <div class="mtr-env-head"><span class="mtr-env-name">命題</span><span class="mtr-env-number">15</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="453">完備束<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal">L</span></span></span></span></span>において、余原子がただ一つ存在するならば、<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span>は結び直既約である。</div>
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-prf" data-source-line="456">
+<section class="mtr-env mtr-prf" data-address="compact-fg+4" data-source-line="456">
 <div class="mtr-env-head"><span class="mtr-env-name">証明</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="457">余原子を<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.4306em;"></span><span class="mord mathnormal">c</span></span></span></span></span>とする。</div>
@@ -866,7 +892,7 @@ body {
 <div class="mtr-blank"></div>
 <div class="mtr-blank"></div>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-rem" data-source-line="470">
+<section class="mtr-env mtr-rem" data-address="compact-fg+5" data-source-line="470">
 <div class="mtr-env-head"><span class="mtr-env-name">注意</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="471"><span class="mtr-math"><span class="mtr-diagram"><svg style="vertical-align: -35.983ex;" xmlns="http://www.w3.org/2000/svg" width="88.235ex" height="38.415ex" role="img" focusable="false" viewBox="0 -1075 39000 16979.6" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="xypic" data-cmd-id="0" data-text-mml-ids="[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54]"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="0.64" transform="translate(900,250) scale(62.5, -62.5)"><g transform="translate(0,0) "></g><g transform="translate(54.4,0) "></g><g transform="translate(124.8,0) "></g><path d="M128.92,13.2 Q140.1,54.81 128.92,94.8" stroke-dasharray="none"></path><g transform="translate(128.92,94.8) rotate(105.04) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><g transform="translate(31.68,0) "></g><g transform="translate(195.2,0) "></g><g transform="translate(257.6,0) "></g><g transform="translate(320,0) "></g><g transform="translate(406.4,0) "></g><g transform="translate(492.8,0) "></g><g transform="translate(571.2,0) "></g><g transform="translate(0,54) "></g><g transform="translate(54.4,54) "></g><g transform="translate(124.8,54) "></g><g transform="translate(195.2,54) "></g><g transform="translate(257.6,54) "></g><g transform="translate(320,54) "></g><g transform="translate(406.4,54) "></g><g transform="translate(492.8,54) "></g><g transform="translate(571.2,54) "></g><g transform="translate(0,108) "></g><g transform="translate(54.4,108) "></g><g transform="translate(124.8,108) "></g><path d="M120.68,94.8 Q109.5,53.19 120.68,13.2" stroke-dasharray="none"></path><g transform="translate(120.68,13.2) rotate(-74.96) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><g transform="translate(-17.58,0) "></g><path d="M103.2,115.35 Q38.28,141.29 6.44,202.8" stroke-dasharray="none"></path><g transform="translate(6.44,202.8) rotate(117.86) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><g transform="translate(-19.48,-22.51) "></g><path d="M146.4,114.87 Q214.61,140.29 250.44,202.8" stroke-dasharray="none"></path><g transform="translate(250.44,202.8) rotate(59.72) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><g transform="translate(17.28,-21.25) "></g><g transform="translate(195.2,108) "></g><g transform="translate(257.6,108) "></g><g transform="translate(320,108) "></g><g transform="translate(406.4,108) "></g><g transform="translate(492.8,108) "></g><g transform="translate(571.2,108) "></g><g transform="translate(0,162) "></g><g transform="translate(54.4,162) "></g><g transform="translate(124.8,162) "></g><g transform="translate(195.2,162) "></g><g transform="translate(257.6,162) "></g><g transform="translate(320,162) "></g><g transform="translate(406.4,162) "></g><g transform="translate(492.8,162) "></g><g transform="translate(571.2,162) "></g><g transform="translate(0,216) "></g><line x1="13.6" y1="204.23" x2="109.55" y2="121.2" stroke-dasharray=""></line><g transform="translate(109.55,121.2) rotate(-40.87) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><g transform="translate(12.21,14.11) "></g><path d="M13.6,219.84 Q125.37,249.65 236,221.9" stroke-dasharray="none"></path><g transform="translate(236,221.9) rotate(-13.94) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><g transform="translate(0,11.64) "></g><g transform="translate(54.4,216) "></g><g transform="translate(124.8,216) "></g><g transform="translate(195.2,216) "></g><g transform="translate(257.6,216) "></g><line x1="241.37" y1="202.8" x2="141.03" y2="121.2" stroke-dasharray=""></line><g transform="translate(141.03,121.2) rotate(-140.88) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><g transform="translate(-11.67,14.35) "></g><line x1="236" y1="216" x2="13.6" y2="216" stroke-dasharray=""></line><g transform="translate(13.6,216) rotate(-180) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><g transform="translate(0,-11.64) "></g><line x1="279.2" y1="216" x2="360.8" y2="216" stroke-dasharray=""></line><g transform="translate(360.8,216) rotate(0) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><g transform="translate(0,-11.64) "></g><g transform="translate(320,216) "></g><g transform="translate(406.4,216) "></g><line x1="452" y1="216" x2="533.6" y2="216" stroke-dasharray=""></line><g transform="translate(533.6,216) rotate(0) "><path d="M0,0 Q-3.55,0.32 -7.82,2.35"></path><path d="M0,0 Q-3.55,-0.32 -7.82,-2.35"></path></g><g transform="translate(0,-11.64) "></g><g transform="translate(492.8,216) "></g><g transform="translate(571.2,216) "></g></g><g stroke="currentColor" fill="currentColor" data-x="6.299999999999999" data-y="0.27499999999999997" data-xypic-id="2" transform="translate(7200,-25)"><g data-mml-node="mstyle"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mstyle"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mi"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">直</text></g><g data-mml-node="mi" transform="translate(1000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">既</text></g><g data-mml-node="mi" transform="translate(2000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">約</text></g></g></g></g></g></g><g stroke="currentColor" fill="currentColor" data-x="8.791421356237308" data-y="3.5694543648263006" data-xypic-id="3" transform="translate(9691.4,-3319.5)"><g data-mml-node="mstyle" transform="scale(0.707)"><g data-mml-node="mi"><path data-c="1D435" d="M231 637Q204 637 199 638T194 649Q194 676 205 682Q206 683 335 683Q594 683 608 681Q671 671 713 636T756 544Q756 480 698 429T565 360L555 357Q619 348 660 311T702 219Q702 146 630 78T453 1Q446 0 242 0Q42 0 39 2Q35 5 35 10Q35 17 37 24Q42 43 47 45Q51 46 62 46H68Q95 46 128 49Q142 52 147 61Q150 65 219 339T288 628Q288 635 231 637ZM649 544Q649 574 634 600T585 634Q578 636 493 637Q473 637 451 637T416 636H403Q388 635 384 626Q382 622 352 506Q352 503 351 500L320 374H401Q482 374 494 376Q554 386 601 434T649 544ZM595 229Q595 273 572 302T512 336Q506 337 429 337Q311 337 310 336Q310 334 293 263T258 122L240 52Q240 48 252 48T333 46Q422 46 429 47Q491 54 543 105T595 229Z"></path></g><g data-mml-node="mi" transform="translate(759,0)"><path data-c="1D45C" d="M201 -11Q126 -11 80 38T34 156Q34 221 64 279T146 380Q222 441 301 441Q333 441 341 440Q354 437 367 433T402 417T438 387T464 338T476 268Q476 161 390 75T201 -11ZM121 120Q121 70 147 48T206 26Q250 26 289 58T351 142Q360 163 374 216T388 308Q388 352 370 375Q346 405 306 405Q243 405 195 347Q158 303 140 230T121 120Z"></path></g><g data-mml-node="mi" transform="translate(1244,0)"><path data-c="1D45C" d="M201 -11Q126 -11 80 38T34 156Q34 221 64 279T146 380Q222 441 301 441Q333 441 341 440Q354 437 367 433T402 417T438 387T464 338T476 268Q476 161 390 75T201 -11ZM121 120Q121 70 147 48T206 26Q250 26 289 58T351 142Q360 163 374 216T388 308Q388 352 370 375Q346 405 306 405Q243 405 195 347Q158 303 140 230T121 120Z"></path></g><g data-mml-node="mi" transform="translate(1729,0)"><path data-c="1D459" d="M117 59Q117 26 142 26Q179 26 205 131Q211 151 215 152Q217 153 225 153H229Q238 153 241 153T246 151T248 144Q247 138 245 128T234 90T214 43T183 6T137 -11Q101 -11 70 11T38 85Q38 97 39 102L104 360Q167 615 167 623Q167 626 166 628T162 632T157 634T149 635T141 636T132 637T122 637Q112 637 109 637T101 638T95 641T94 647Q94 649 96 661Q101 680 107 682T179 688Q194 689 213 690T243 693T254 694Q266 694 266 686Q266 675 193 386T118 83Q118 81 118 75T117 65V59Z"></path></g><g data-mml-node="mi" transform="translate(2027,0)"><path data-c="1D452" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z"></path></g><g data-mml-node="mi" transform="translate(2493,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">代</text></g><g data-mml-node="mi" transform="translate(3493,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">数</text></g></g></g><g stroke="currentColor" fill="currentColor" data-x="6.799999999999999" data-y="7.025" data-xypic-id="21" transform="translate(7700,-6775)"><g data-mml-node="mstyle"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mstyle"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mi"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">既</text></g><g data-mml-node="mi" transform="translate(1000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">約</text></g></g></g></g></g></g><g stroke="currentColor" fill="currentColor" data-x="5.394365081389594" data-y="3.5694543648263006" data-xypic-id="22" transform="translate(6294.4,-3319.5)"><g data-mml-node="mstyle" transform="scale(0.707)"><g data-mml-node="mi"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">一</text></g><g data-mml-node="mi" transform="translate(1000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">般</text></g></g></g><g stroke="currentColor" fill="currentColor" data-x="0.12967953836866025" data-y="8.005392532591225" data-xypic-id="23" transform="translate(1029.7,-7755.4)"><g data-mml-node="mstyle" transform="scale(0.707)"><g data-mml-node="mi"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">有</text></g><g data-mml-node="mi" transform="translate(1000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">界</text></g><g data-mml-node="mi" transform="translate(2000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">分</text></g><g data-mml-node="mi" transform="translate(3000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">配</text></g><g data-mml-node="mi" transform="translate(4000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">束</text></g></g></g><g stroke="currentColor" fill="currentColor" data-x="12.198665185141405" data-y="8.060402702109416" data-xypic-id="24" transform="translate(13098.7,-7810.4)"><g data-mml-node="mstyle" transform="scale(0.707)"><g data-mml-node="mi"><path data-c="1D435" d="M231 637Q204 637 199 638T194 649Q194 676 205 682Q206 683 335 683Q594 683 608 681Q671 671 713 636T756 544Q756 480 698 429T565 360L555 357Q619 348 660 311T702 219Q702 146 630 78T453 1Q446 0 242 0Q42 0 39 2Q35 5 35 10Q35 17 37 24Q42 43 47 45Q51 46 62 46H68Q95 46 128 49Q142 52 147 61Q150 65 219 339T288 628Q288 635 231 637ZM649 544Q649 574 634 600T585 634Q578 636 493 637Q473 637 451 637T416 636H403Q388 635 384 626Q382 622 352 506Q352 503 351 500L320 374H401Q482 374 494 376Q554 386 601 434T649 544ZM595 229Q595 273 572 302T512 336Q506 337 429 337Q311 337 310 336Q310 334 293 263T258 122L240 52Q240 48 252 48T333 46Q422 46 429 47Q491 54 543 105T595 229Z"></path></g><g data-mml-node="mi" transform="translate(759,0)"><path data-c="1D45C" d="M201 -11Q126 -11 80 38T34 156Q34 221 64 279T146 380Q222 441 301 441Q333 441 341 440Q354 437 367 433T402 417T438 387T464 338T476 268Q476 161 390 75T201 -11ZM121 120Q121 70 147 48T206 26Q250 26 289 58T351 142Q360 163 374 216T388 308Q388 352 370 375Q346 405 306 405Q243 405 195 347Q158 303 140 230T121 120Z"></path></g><g data-mml-node="mi" transform="translate(1244,0)"><path data-c="1D45C" d="M201 -11Q126 -11 80 38T34 156Q34 221 64 279T146 380Q222 441 301 441Q333 441 341 440Q354 437 367 433T402 417T438 387T464 338T476 268Q476 161 390 75T201 -11ZM121 120Q121 70 147 48T206 26Q250 26 289 58T351 142Q360 163 374 216T388 308Q388 352 370 375Q346 405 306 405Q243 405 195 347Q158 303 140 230T121 120Z"></path></g><g data-mml-node="mi" transform="translate(1729,0)"><path data-c="1D459" d="M117 59Q117 26 142 26Q179 26 205 131Q211 151 215 152Q217 153 225 153H229Q238 153 241 153T246 151T248 144Q247 138 245 128T234 90T214 43T183 6T137 -11Q101 -11 70 11T38 85Q38 97 39 102L104 360Q167 615 167 623Q167 626 166 628T162 632T157 634T149 635T141 636T132 637T122 637Q112 637 109 637T101 638T95 641T94 647Q94 649 96 661Q101 680 107 682T179 688Q194 689 213 690T243 693T254 694Q266 694 266 686Q266 675 193 386T118 83Q118 81 118 75T117 65V59Z"></path></g><g data-mml-node="mi" transform="translate(2027,0)"><path data-c="1D452" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z"></path></g><g data-mml-node="mi" transform="translate(2493,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">代</text></g><g data-mml-node="mi" transform="translate(3493,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">数</text></g></g></g><g stroke="currentColor" fill="currentColor" data-x="-0.49999999999999994" data-y="13.775" data-xypic-id="40" transform="translate(400,-13525)"><g data-mml-node="mstyle"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mstyle"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mi"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">素</text></g></g></g></g></g></g><g stroke="currentColor" fill="currentColor" data-x="3.956010483622164" data-y="11.201278759716368" data-xypic-id="41" transform="translate(4856,-10951.3)"><g data-mml-node="mstyle" transform="scale(0.707)"><g data-mml-node="mi"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">一</text></g><g data-mml-node="mi" transform="translate(1000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">般</text></g></g></g><g stroke="currentColor" fill="currentColor" data-x="6.461484616064421" data-y="15.62175144212722" data-xypic-id="42" transform="translate(7361.5,-15371.8)"><g data-mml-node="mstyle" transform="scale(0.707)"><g data-mml-node="mi"><path data-c="1D435" d="M231 637Q204 637 199 638T194 649Q194 676 205 682Q206 683 335 683Q594 683 608 681Q671 671 713 636T756 544Q756 480 698 429T565 360L555 357Q619 348 660 311T702 219Q702 146 630 78T453 1Q446 0 242 0Q42 0 39 2Q35 5 35 10Q35 17 37 24Q42 43 47 45Q51 46 62 46H68Q95 46 128 49Q142 52 147 61Q150 65 219 339T288 628Q288 635 231 637ZM649 544Q649 574 634 600T585 634Q578 636 493 637Q473 637 451 637T416 636H403Q388 635 384 626Q382 622 352 506Q352 503 351 500L320 374H401Q482 374 494 376Q554 386 601 434T649 544ZM595 229Q595 273 572 302T512 336Q506 337 429 337Q311 337 310 336Q310 334 293 263T258 122L240 52Q240 48 252 48T333 46Q422 46 429 47Q491 54 543 105T595 229Z"></path></g><g data-mml-node="mi" transform="translate(759,0)"><path data-c="1D45C" d="M201 -11Q126 -11 80 38T34 156Q34 221 64 279T146 380Q222 441 301 441Q333 441 341 440Q354 437 367 433T402 417T438 387T464 338T476 268Q476 161 390 75T201 -11ZM121 120Q121 70 147 48T206 26Q250 26 289 58T351 142Q360 163 374 216T388 308Q388 352 370 375Q346 405 306 405Q243 405 195 347Q158 303 140 230T121 120Z"></path></g><g data-mml-node="mi" transform="translate(1244,0)"><path data-c="1D45C" d="M201 -11Q126 -11 80 38T34 156Q34 221 64 279T146 380Q222 441 301 441Q333 441 341 440Q354 437 367 433T402 417T438 387T464 338T476 268Q476 161 390 75T201 -11ZM121 120Q121 70 147 48T206 26Q250 26 289 58T351 142Q360 163 374 216T388 308Q388 352 370 375Q346 405 306 405Q243 405 195 347Q158 303 140 230T121 120Z"></path></g><g data-mml-node="mi" transform="translate(1729,0)"><path data-c="1D459" d="M117 59Q117 26 142 26Q179 26 205 131Q211 151 215 152Q217 153 225 153H229Q238 153 241 153T246 151T248 144Q247 138 245 128T234 90T214 43T183 6T137 -11Q101 -11 70 11T38 85Q38 97 39 102L104 360Q167 615 167 623Q167 626 166 628T162 632T157 634T149 635T141 636T132 637T122 637Q112 637 109 637T101 638T95 641T94 647Q94 649 96 661Q101 680 107 682T179 688Q194 689 213 690T243 693T254 694Q266 694 266 686Q266 675 193 386T118 83Q118 81 118 75T117 65V59Z"></path></g><g data-mml-node="mi" transform="translate(2027,0)"><path data-c="1D452" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z"></path></g><g data-mml-node="mi" transform="translate(2493,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">代</text></g><g data-mml-node="mi" transform="translate(3493,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">数</text></g></g></g><g stroke="currentColor" fill="currentColor" data-x="15.100000000000001" data-y="13.775" data-xypic-id="46" transform="translate(16000,-13525)"><g data-mml-node="mstyle"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mstyle"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mi"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">原</text></g><g data-mml-node="mi" transform="translate(1000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">子</text></g></g></g></g></g></g><g stroke="currentColor" fill="currentColor" data-x="10.51372675493348" data-y="11.21605905374538" data-xypic-id="47" transform="translate(11413.7,-10966.1)"><g data-mml-node="mstyle" transform="scale(0.707)"><g data-mml-node="mi"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">一</text></g><g data-mml-node="mi" transform="translate(1000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">般</text></g></g></g><g stroke="currentColor" fill="currentColor" data-x="6.282233047033632" data-y="12.967157287525382" data-xypic-id="48" transform="translate(7182.2,-12717.2)"><g data-mml-node="mstyle" transform="scale(0.707)"><g data-mml-node="mi"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">有</text></g><g data-mml-node="mi" transform="translate(1000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">界</text></g><g data-mml-node="mi" transform="translate(2000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">分</text></g><g data-mml-node="mi" transform="translate(3000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">配</text></g><g data-mml-node="mi" transform="translate(4000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">束</text></g></g></g><g stroke="currentColor" fill="currentColor" data-x="19.689339828220177" data-y="12.967157287525382" data-xypic-id="49" transform="translate(20589.3,-12717.2)"><g data-mml-node="mstyle" transform="scale(0.707)"><g data-mml-node="mi"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">完</text></g><g data-mml-node="mi" transform="translate(1000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">備</text></g><g data-mml-node="mi" transform="translate(2000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">束</text></g></g></g><g stroke="currentColor" fill="currentColor" data-x="22.9" data-y="13.775" data-xypic-id="51" transform="translate(23800,-13525)"><g data-mml-node="mstyle"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mstyle"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mi"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">コ</text></g><g data-mml-node="mi" transform="translate(1000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">ン</text></g><g data-mml-node="mi" transform="translate(2000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">パ</text></g><g data-mml-node="mi" transform="translate(3000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">ク</text></g><g data-mml-node="mi" transform="translate(4000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">ト</text></g></g></g></g></g></g><g stroke="currentColor" fill="currentColor" data-x="29.84289321881345" data-y="12.967157287525382" data-xypic-id="52" transform="translate(30742.9,-12717.2)"><g data-mml-node="mstyle" transform="scale(0.707)"><g data-mml-node="mi"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">一</text></g><g data-mml-node="mi" transform="translate(1000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">般</text></g></g></g><g stroke="currentColor" fill="currentColor" data-x="33.699999999999996" data-y="13.775" data-xypic-id="54" transform="translate(34600,-13525)"><g data-mml-node="mstyle"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mstyle"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mi"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">有</text></g><g data-mml-node="mi" transform="translate(1000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">限</text></g><g data-mml-node="mi" transform="translate(2000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">生</text></g><g data-mml-node="mi" transform="translate(3000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">成</text></g></g></g></g></g></g></g></g></g></svg></span></span></div>
@@ -875,14 +901,14 @@ body {
 <div class="mtr-blank"></div>
 <div class="mtr-blank"></div>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-h1" data-source-line="476">
+<section class="mtr-env mtr-h1" data-address="compact-fg+6" data-source-line="476">
 <div class="mtr-env-head"><span class="mtr-env-name">h1</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="477">イデアル・フィルターについて</div>
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-prop" data-source-line="480">
+<section class="mtr-env mtr-prop" data-address="compact-fg+7" data-source-line="480">
 <div class="mtr-env-head"><span class="mtr-env-name">命題</span><span class="mtr-env-number">16</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="481"><span class="mtr-math mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span>を持つ束<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal">L</span></span></span></span></span>と<span class="mtr-math mtr-gap-before mtr-gap-after"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>∈</mo><mi>L</mi></mrow><annotation encoding="application/x-tex">p \in L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="katex-base"><span class="katex-strut" style="height:0.7335em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">p</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="katex-base"><span class="katex-strut" style="height:0.6833em;"></span><span class="mord mathnormal">L</span></span></span></span></span>について、以下は同値である。</div>
@@ -897,7 +923,7 @@ body {
 </div>
 </section>
 <div class="mtr-blank"></div>
-<section class="mtr-env mtr-prf" data-source-line="492">
+<section class="mtr-env mtr-prf" data-address="compact-fg+8" data-source-line="492">
 <div class="mtr-env-head"><span class="mtr-env-name">証明</span></div>
 <div class="mtr-env-body">
 <div class="mtr-line" data-depth="0" data-source-line="493">イデアルの方だけ示す。</div>
@@ -970,6 +996,135 @@ body {
   addEventListener("resize", follow);
 })();
 </script>
+<script>
+(() => {
+  const { endpoint, documentKey } = {"endpoint":"https://script.google.com/macros/s/AKfycbzNFIHIx9wnndXFI9vyMKv_w8BXXpdlZ_xXUIoXRjuaokGkGjluwjlgnh-27LgV-unIKg/exec","documentKey":"lattice/束の素元と既約元と原子元と直既約元とコンパクト元"};
+  const SECRETS = "mtr-memo-secrets";
+  const NAME = "mtr-memo-name";
 
+  // localStorage が使えない(プライベートウィンドウなど)ときは覚えないだけ
+  const load = (key, fallback) => {
+    try { return JSON.parse(localStorage.getItem(key)) ?? fallback; } catch { return fallback; }
+  };
+  const save = (key, value) => {
+    try { localStorage.setItem(key, JSON.stringify(value)); } catch {}
+  };
+
+  const unwrap = async (response) => {
+    const body = await response.json();
+    if (body.error !== undefined) throw new Error(body.error);
+    return body;
+  };
+  const get = () => fetch(endpoint + "?document=" + encodeURIComponent(documentKey)).then(unwrap);
+  // text/plain ならプリフライトなしで送れる
+  const post = (request) =>
+    fetch(endpoint, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(request) }).then(unwrap);
+
+  const element = (tag, properties, ...children) => {
+    const node = Object.assign(document.createElement(tag), properties);
+    node.append(...children);
+    return node;
+  };
+  const randomKey = () => Array.from(crypto.getRandomValues(new Uint8Array(16)), (b) => b.toString(16).padStart(2, "0")).join("");
+  const formatTime = (time) => new Date(time).toLocaleString("ja-JP", { dateStyle: "medium", timeStyle: "short" });
+
+  /** address → 環境のメモ欄 */
+  const boxes = new Map();
+
+  class MemoBox {
+    constructor(section) {
+      this.address = section.dataset.address;
+      this.memos = [];
+      this.count = element("span", { className: "mtr-memo-count" });
+      this.toggle = element("button", { type: "button", className: "mtr-memo-toggle" }, "メモ", this.count);
+      this.toggle.setAttribute("aria-expanded", "false");
+      this.list = element("ul", { className: "mtr-memo-list" });
+      this.text = element("textarea", { name: "text", required: true, maxLength: 2000, rows: 3, placeholder: "この環境へのメモ(Ctrl+Enter で書き込む)" });
+      this.name = element("input", { name: "name", maxLength: 50, placeholder: "名前(任意)", value: load(NAME, "") });
+      this.submit = element("button", { type: "submit" }, "書き込む");
+      this.status = element("span", { className: "mtr-memo-status" });
+      this.form = element("form", { className: "mtr-memo-form" }, this.text, element("div", {}, this.name, this.submit, this.status));
+      this.panel = element("div", { className: "mtr-memo", hidden: true }, this.list, this.form);
+      section.querySelector(":scope > .mtr-env-head").append(this.toggle);
+      section.append(this.panel);
+
+      this.toggle.addEventListener("click", () => this.open(this.panel.hidden));
+      this.text.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" && (event.ctrlKey || event.metaKey)) this.form.requestSubmit();
+      });
+      this.form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        this.add().catch((error) => (this.status.textContent = "書き込めませんでした: " + error.message));
+      });
+    }
+
+    open(open) {
+      this.panel.hidden = !open;
+      this.toggle.setAttribute("aria-expanded", String(open));
+      if (open) this.text.focus();
+    }
+
+    async add() {
+      const secret = randomKey();
+      this.submit.disabled = true;
+      this.status.textContent = "送信中…";
+      try {
+        const { memo } = await post({ action: "add", document: documentKey, address: this.address, name: this.name.value, text: this.text.value, secret });
+        save(SECRETS, { ...load(SECRETS, {}), [memo.id]: secret });
+        save(NAME, this.name.value.trim());
+        this.text.value = "";
+        this.status.textContent = "";
+        this.show([...this.memos, memo]);
+      } finally {
+        this.submit.disabled = false;
+      }
+    }
+
+    async remove(memo, secret) {
+      if (!confirm("このメモを削除しますか?")) return;
+      try {
+        await post({ action: "delete", id: memo.id, secret });
+        const { [memo.id]: _, ...rest } = load(SECRETS, {});
+        save(SECRETS, rest);
+        this.show(this.memos.filter((m) => m !== memo));
+      } catch (error) {
+        this.status.textContent = "削除できませんでした: " + error.message;
+      }
+    }
+
+    show(memos) {
+      this.memos = memos;
+      const secrets = load(SECRETS, {});
+      this.list.replaceChildren(...memos.map((memo) => {
+        const meta = element("div", { className: "mtr-memo-meta" },
+          element("span", { className: "mtr-memo-name" }, memo.name || "名無し"),
+          element("time", { dateTime: memo.time }, formatTime(memo.time)));
+        const secret = secrets[memo.id];
+        if (secret !== undefined) {
+          const remove = element("button", { type: "button" }, "削除");
+          remove.addEventListener("click", () => this.remove(memo, secret));
+          meta.append(remove);
+        }
+        return element("li", {}, meta, element("div", { className: "mtr-memo-text" }, memo.text));
+      }));
+      this.count.textContent = memos.length === 0 ? "" : String(memos.length);
+      this.toggle.classList.toggle("mtr-memo-has", memos.length > 0);
+    }
+  }
+
+  for (const section of document.querySelectorAll(".mtr-env[data-address]")) {
+    const box = new MemoBox(section);
+    boxes.set(box.address, box);
+  }
+  get().then(
+    ({ memos }) => {
+      for (const box of boxes.values()) box.show(memos.filter((memo) => memo.address === box.address));
+    },
+    (error) => {
+      for (const box of boxes.values()) box.status.textContent = "メモを読み込めませんでした: " + error.message;
+    },
+  );
+})();
+</script>
 </body>
 </html>
