@@ -5,6 +5,8 @@ category/#2.html
 category/#3.html
 category/#4.html
 category/#5.html
+closure-operator/二項関係全体の成す束と閉包系.html
+closure-operator/閉包作用素と閉包系.html
 field/#0.html
 field/#0-exercise.html
 field/#1.html
@@ -34,7 +36,6 @@ lattice/束の素元と既約元と原子元と直既約元とコンパクト元
 lattice/代数的束について.html
 lattice/半順序集合のイデアル・フィルターについて.html
 lattice/半順序集合の高さと幅と階数.html
-lattice/没・Kurosh-Oreの定理とKrull-Schmidtの定理.html
 lattice/没・束と加群#3.html
 lattice/有限長モジュラー束と透視関係.html
 monoid/モノイドと半環の基本.html
