@@ -219,6 +219,22 @@ body {
     }
 }
 
+.mtr-h3 {
+    .mtr-env-head {
+        display: none;
+    }
+
+    font-size: 1.125em;
+
+    padding: 0;
+    background-color: transparent;
+    border: none;
+
+    .mtr-line::before {
+        content: "### ";
+    }
+}
+
 /* 定理・補題は左に色の帯を付ける */
 .mtr-thm,
 .mtr-lem {
