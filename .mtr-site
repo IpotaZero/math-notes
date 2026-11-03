@@ -13,6 +13,7 @@ category/#2.html
 category/#3.html
 category/#4.html
 category/#5.html
+closure-operator/位相的閉包作用素.html
 closure-operator/関係が定める反変順序随伴.html
 closure-operator/二項関係全体の成す束と閉包系.html
 closure-operator/反変順序随伴と閉元の対応.html
@@ -56,6 +57,7 @@ lattice/直和分解と互いに素.html
 lattice/透視関係.html
 lattice/半順序集合のイデアル・フィルターについて.html
 lattice/半順序集合の高さと幅と階数.html
+lattice/分配束の既約分解.html
 lattice/没・束と加群#3.html
 lattice/有限長モジュラー束と透視関係.html
 locale/#0.html
@@ -65,6 +67,7 @@ locale/#3「点」.html
 locale/#4「sober空間と空間的フレーム」.html
 locale/#5「点をもたないフレーム」.html
 monoid/没・モノイドと半環の基本.html
+quantale/剰余束とクオンタール.html
 katex/katex.min.css
 katex/fonts/KaTeX_AMS-Regular.ttf
 katex/fonts/KaTeX_AMS-Regular.woff
